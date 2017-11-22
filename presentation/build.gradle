@@ -1,0 +1,103 @@
+apply plugin: 'com.android.application'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+
+    defaultConfig {
+        applicationId "com.food.delivery"
+
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode globalConfiguration["androidVersionCode"]
+        versionName globalConfiguration["androidVersionName"]
+        testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
+        testApplicationId globalConfiguration["testApplicationId"]
+        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/MANIFEST.MF'
+        return void
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs =
+                    [
+                            'src/main/res/layouts/activities',
+                            'src/main/res/layouts/fragments',
+                            'src/main/res/layouts/item',
+                            'src/main/res/layouts/other',
+                            'src/main/res/layouts',
+                            'src/main/res'
+                    ]
+        }
+    }
+    buildToolsVersion '26.0.2'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile project(':domain')
+    compile project(':data')
+
+    def presentationDependencies = rootProject.ext.presentationDependencies
+    def presentationTestDependencies = rootProject.ext.presentationTestDependencies
+    compile presentationDependencies.support
+    compile presentationDependencies.appCompat
+
+    compile presentationDependencies.dagger
+    compile presentationDependencies.daggerAndroid
+    compile presentationDependencies.daggerAndroidSupport
+    annotationProcessor presentationDependencies.daggerAndroidCompiler
+    annotationProcessor presentationDependencies.daggerCompiler
+
+    compile presentationDependencies.butterKnife
+    annotationProcessor presentationDependencies.butterKnifeCompiler
+
+    compile presentationDependencies.rxJava1
+    compile presentationDependencies.rxAndroid1
+
+    compile presentationDependencies.recyclerView
+    compile presentationDependencies.costraintLayout
+    compile presentationDependencies.design
+    compile presentationDependencies.gson
+    compile presentationDependencies.eventbus
+    compile presentationDependencies.cardView
+    compile presentationDependencies.multidex
+    compile presentationDependencies.circlePageIndicator
+    compile presentationDependencies.gsmPlayService
+//    compile presentationDependencies.observableScrollView
+
+    compile presentationDependencies.glide
+    annotationProcessor presentationDependencies.glideCompiller
+
+    androidTestCompile presentationTestDependencies.mockito
+    androidTestCompile presentationTestDependencies.dexmaker
+    androidTestCompile presentationTestDependencies.dexmakerMockito
+//    androidTestCompile presentationTestDependencies.espresso
+    androidTestCompile presentationTestDependencies.testRunner
+    androidTestCompile presentationTestDependencies.supportAnnotation
+
+    ///////////////JUNIT TESTING//////////////////////////
+    testCompile presentationTestDependencies.testng
+
+}

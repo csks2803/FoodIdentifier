@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Food Identifier</string>
+
+    <string name="splash_name">@string/app_name</string>
+
+    <string name="skip">Skip</string>
+    <string name="done">Done</string>
+
+    <string name="tutorial_one">Description one</string>
+    <string name="tutorial_two">Description two</string>
+    <string name="tutorial_three">Description three</string>
+    <string name="tutorial_four">Description four</string>
+
+    <string name="stores">Stores</string>
+    <string name="map">Map</string>
+
+</resources>

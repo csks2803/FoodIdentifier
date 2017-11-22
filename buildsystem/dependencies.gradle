@@ -1,0 +1,137 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+/////////////////////// ANDROID ////////////////////////////////
+    androidBuildToolsVersion = "26.0.1"
+    androidMinSdkVersion = 19
+    androidTargetSdkVersion = 22
+    androidCompileSdkVersion = 26
+/////////////////////// LIBRARIES ////////////////////////////////
+    daggerVersion = '2.11'
+    butterKnifeVersion = '8.8.1'
+    androidSupportVersion = '26.0.2'
+    rxJavaVersion = '2.1.3'
+    rxAndroidVersion = '2.0.1'
+    rxJavaVersion1 = '1.1.0'
+    rxAndroidVersion1 = '1.1.0'
+    javaxAnnotationVersion = '1.0'
+    gsonVersion = '2.8.1'
+    androidAnnotationsVersion = '24.2.1'
+    retrofitVersion = '2.3.0'
+    jacksonVersion = '2.7.3'
+    adapterRxVersion = '2.0.2'
+    converterGsonVersion = '2.0.2'
+    eventBusVersion = '3.0.0'
+    butterKnifeCompilerVersion = '8.8.1'
+    universalImageLoaderVersion = '1.9.5'
+    okHttpVersion3 = '3.9.0'
+    httpLoginInterceptorVersion = '3.0.1'
+    jsoupVersion = '1.7.3'
+    circleImageViewVersion = '2.3.0'
+    circlePageIndicatorVersion = '1.2.2@aar'
+    multidexVersion = '1.0.1'
+    constraintLayout = '1.0.2'
+    glideVersion = '4.3.1'
+    observableScrolView = '1.6.0'
+    googleGsmVersion = '11.6.0'
+/////////////////////// TESTING ////////////////////////////////
+    robolectricVersion = '3.0'
+    jUnitVersion = '4.12'
+    assertJVersion = '1.7.1'
+    mockitoVersion = '2.10.0'
+    dexmakerVersion = '1.2'
+    espressoVersion = '3.0.1'
+    testRunner = '1.0.1'
+    testngVersion = '6.9.6'
+/////////////////////// DEVELOPMENT ////////////////////////////////
+
+    presentationDependencies = [
+            daggerAndroid        : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerAndroidSupport : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            dagger               : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler       : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerAndroidCompiler: "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            butterKnife          : "com.jakewharton:butterknife:${butterKnifeVersion}",
+            butterKnifeCompiler  : "com.jakewharton:butterknife-compiler:${butterKnifeCompilerVersion}",
+            rxJava               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxJava1              : "io.reactivex:rxjava:${rxJavaVersion1}",
+            rxAndroid1           : "io.reactivex:rxandroid:${rxAndroidVersion1}",
+            javaxAnnotation      : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            support              : "com.android.support:support-v13:${androidSupportVersion}",
+            appCompat            : "com.android.support:appcompat-v7:${androidSupportVersion}",
+            recyclerView         : "com.android.support:recyclerview-v7:${androidSupportVersion}",
+            design               : "com.android.support:design:${androidSupportVersion}",
+            gson                 : "com.google.code.gson:gson:${gsonVersion}",
+            jackson              : "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+            eventbus             : "org.greenrobot:eventbus:${eventBusVersion}",
+            universalImageLoader : "com.nostra13.universalimageloader:universal-image-loader:${universalImageLoaderVersion}",
+            cardView             : "com.android.support:cardview-v7:${androidSupportVersion}",
+            multidex             : "com.android.support:multidex:${multidexVersion}",
+            circlePageIndicator  : "me.relex:circleindicator:${circlePageIndicatorVersion}",
+            costraintLayout      : "com.android.support.constraint:constraint-layout:${constraintLayout}",
+            glide                : "com.github.bumptech.glide:glide:${glideVersion}",
+            glideCompiller       : "com.github.bumptech.glide:compiler:${glideVersion}",
+            observableScrollView : "com.github.ksoichiro:android-observablescrollview:${observableScrolView}",
+            gsmPlayService       : "com.google.android.gms:play-services:${googleGsmVersion}"
+    ]
+
+    presentationTestDependencies = [
+            mockito          : "org.mockito:mockito-core:${mockitoVersion}",
+            dexmaker         : "com.google.dexmaker:dexmaker:${dexmakerVersion}",
+            dexmakerMockito  : "com.google.dexmaker:dexmaker-mockito:${dexmakerVersion}",
+            espresso         : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            testRunner       : "com.android.support.test:runner:${testRunner}",
+            supportAnnotation: "com.android.support:support-annotations:${androidSupportVersion}",
+            testng           : "org.testng:testng:${testngVersion}"
+    ]
+
+    domainDependencies = [
+            dagger        : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
+            rxJava        : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid     : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxJava1       : "io.reactivex:rxjava:${rxJavaVersion1}"
+    ]
+
+    domainTestDependencies = [
+            junit            : "junit:junit:${jUnitVersion}",
+            mockito          : "org.mockito:mockito-core:${mockitoVersion}",
+            testRunner       : "com.android.support.test:runner:${testRunner}",
+            supportAnnotation: "com.android.support:support-annotations:${androidSupportVersion}"
+    ]
+
+    dataDependencies = [
+            daggerAndroid        : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerAndroidSupport : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            dagger               : "com.google.dagger:dagger:${daggerVersion}",
+            daggerCompiler       : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            daggerAndroidCompiler: "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            gson                 : "com.google.code.gson:gson:${gsonVersion}",
+            rxJava               : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid            : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            rxJava1              : "io.reactivex:rxjava:${rxJavaVersion1}",
+            rxAndroid1           : "io.reactivex:rxandroid:${rxAndroidVersion1}",
+            retrofitAdapter      : "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}",
+            retrofit             : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            converterGson        : "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            jackson              : "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
+            okhttp3              : "com.squareup.okhttp3:okhttp:${okHttpVersion3}",
+            loggingInterceptor   : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion3}",
+    ]
+
+    dataTestDependencies = [
+            junit            : "junit:junit:${jUnitVersion}",
+            assertj          : "org.assertj:assertj-core:${assertJVersion}",
+            mockito          : "org.mockito:mockito-core:${mockitoVersion}",
+            robolectric      : "org.robolectric:robolectric:${robolectricVersion}",
+            testRunner       : "com.android.support.test:runner:${testRunner}",
+            supportAnnotation: "com.android.support:support-annotations:${androidSupportVersion}",
+            testng           : "org.testng:testng:${testngVersion}"
+    ]
+
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_miny">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">12dp</dimen>
+    <dimen name="margin_big">16dp</dimen>
+    <dimen name="margin_huge">20dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+
+    <dimen name="size_0">0dp</dimen>
+    <dimen name="size_2">2dp</dimen>
+    <dimen name="size_4">4dp</dimen>
+    <dimen name="size_8">8dp</dimen>
+    <dimen name="size_10">10dp</dimen>
+    <dimen name="size_12">12dp</dimen>
+    <dimen name="size_16">16dp</dimen>
+    <dimen name="size_20">20dp</dimen>
+    <dimen name="size_24">24dp</dimen>
+    <dimen name="size_28">28dp</dimen>
+    <dimen name="size_32">32dp</dimen>
+    <dimen name="size_36">36dp</dimen>
+    <dimen name="size_44">44dp</dimen>
+    <dimen name="size_52">52dp</dimen>
+
+    <dimen name="padding_tiny">2dp</dimen>
+    <dimen name="padding_miny">4dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_medium">10dp</dimen>
+    <dimen name="padding_big">12dp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="padding_huge">20dp</dimen>
+
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+    <dimen name="font_size_20">20sp</dimen>
+    <dimen name="font_size_24">24sp</dimen>
+    <dimen name="font_size_28">28sp</dimen>
+    <dimen name="font_size_34">34sp</dimen>
+    <dimen name="font_size_45">45sp</dimen>
+    <dimen name="font_size_56">56sp</dimen>
+
+    <dimen name="tv_size">200dp</dimen>
+    <dimen name="view_pager_height">250dp</dimen>
+    <dimen name="view_pager_width">350dp</dimen>
+</resources>

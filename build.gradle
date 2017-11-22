@@ -1,0 +1,38 @@
+apply from: 'buildsystem/dependencies.gradle'
+
+buildscript {
+    repositories {
+        jcenter()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven {
+            url "https://maven.google.com"
+        }
+        google()
+    }
+
+    ext {
+        androidApplicationId = 'com.food.delivery'
+        androidVersionCode = 1
+        androidVersionName = "1"
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
+        testApplicationId = 'co.food.delivery.test'
+    }
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = 1.7
+        targetCompatibility = 1.7
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+

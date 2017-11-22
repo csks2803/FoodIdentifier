@@ -38,6 +38,9 @@ ext {
     glideVersion = '4.3.1'
     observableScrolView = '1.6.0'
     googleGsmVersion = '11.6.0'
+    zxingVersion = '3.2.0'
+    zxingEmbeddedVersion = '3.5.0'
+
 /////////////////////// TESTING ////////////////////////////////
     robolectricVersion = '3.0'
     jUnitVersion = '4.12'
@@ -77,7 +80,9 @@ ext {
             glide                : "com.github.bumptech.glide:glide:${glideVersion}",
             glideCompiller       : "com.github.bumptech.glide:compiler:${glideVersion}",
             observableScrollView : "com.github.ksoichiro:android-observablescrollview:${observableScrolView}",
-            gsmPlayService       : "com.google.android.gms:play-services:${googleGsmVersion}"
+            gsmPlayService       : "com.google.android.gms:play-services:${googleGsmVersion}",
+            zxid                 : "com.google.zxing:core:${zxingVersion}",
+            zxidEmbedded         : "com.journeyapps:zxing-android-embedded:${zxingEmbeddedVersion}",
     ]
 
     presentationTestDependencies = [

@@ -14,7 +14,6 @@ android {
         versionName globalConfiguration["androidVersionName"]
         testInstrumentationRunner globalConfiguration["testInstrumentationRunner"]
         testApplicationId globalConfiguration["testApplicationId"]
-        resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
 
         multiDexEnabled true
     }

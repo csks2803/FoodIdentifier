@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 import static android.content.Context.MODE_PRIVATE;
-import static com.food.delivery.application.FoodDeliveryApplication.TAG;
+import static com.food.delivery.application.FoodIdentifierApplication.TAG;
 
 /**
  * Created by taras on 11/12/2017.

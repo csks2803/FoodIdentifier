@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.food.delivery.application.FoodDeliveryApplication;
+import com.food.delivery.application.FoodIdentifierApplication;
 import com.food.delivery.di.components.ActivityComponent;
 import com.food.delivery.di.module.ActivityModule;
 import com.food.delivery.mvp.interfaces.activity.IBaseView;
@@ -42,7 +42,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
     protected void setupComponent(){}
 
     public ActivityComponent createActivityComponent() {
-        return ((FoodDeliveryApplication) getApplication()).getFoodDeliveryAppComponent().plus(new ActivityModule(this));
+        return ((FoodIdentifierApplication) getApplication()).getFoodDeliveryAppComponent().plus(new ActivityModule(this));
     }
 
 }

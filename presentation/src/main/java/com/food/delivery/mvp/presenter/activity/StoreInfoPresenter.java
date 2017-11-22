@@ -3,10 +3,8 @@ package com.food.delivery.mvp.presenter.activity;
 import android.app.Activity;
 import android.location.Location;
 
-import com.food.delivery.di.annotation.PerActivity;
-import com.food.delivery.di.annotation.PerFragment;
 import com.food.delivery.di.components.ActivityComponent;
-import com.food.delivery.mvp.interfaces.activity.IStoreInfoView;
+import com.food.delivery.mvp.interfaces.activity.IMainView;
 import com.food.delivery.mvp.model.FoodPackageHolder;
 import com.food.delivery.mvp.presenter.BasePresenter;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -22,7 +20,7 @@ import javax.inject.Inject;
  * Company: FoodDelivery
  */
 
-public class StoreInfoPresenter extends BasePresenter<IStoreInfoView> {
+public class StoreInfoPresenter extends BasePresenter<IMainView> {
     @Inject FoodPackageHolder mFoodPackageHolder;
 
     public StoreInfoPresenter(ActivityComponent activityComponent) {

@@ -17,6 +17,7 @@ import com.food.delivery.di.components.ActivityComponent;
 import com.food.delivery.mvp.interfaces.activity.IMainView;
 import com.food.delivery.mvp.presenter.activity.MainActivityPresenter;
 import com.food.delivery.mvp.view.fragments.HistoryFragment;
+import com.food.delivery.mvp.view.fragments.ProductFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,11 +49,7 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
 
     @Override
     public void replace() {
-    }
-
-    @Override
-    public void createAdapter() {
-
+        mNavigator.replace(this, ProductFragment.class, R.id.fl_container, null, false);
     }
 
     @Override

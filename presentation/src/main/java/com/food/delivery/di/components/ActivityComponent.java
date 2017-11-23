@@ -3,6 +3,7 @@ package com.food.delivery.di.components;
 import com.food.delivery.di.annotation.PerActivity;
 import com.food.delivery.di.module.ActivityModule;
 import com.food.delivery.di.module.FragmentModule;
+import com.food.delivery.mvp.presenter.activity.SplashPresenter;
 import com.food.delivery.mvp.presenter.fragments.HistoryPresenter;
 import com.food.delivery.mvp.presenter.activity.IdScannerPresenter;
 import com.food.delivery.mvp.presenter.activity.MainActivityPresenter;
@@ -36,4 +37,6 @@ public interface ActivityComponent {
     void inject(IdScannerPresenter idScannerPresenter);
 
     void inject(HistoryPresenter historyPresenter);
+
+    void inject(SplashPresenter splashPresenter);
 }

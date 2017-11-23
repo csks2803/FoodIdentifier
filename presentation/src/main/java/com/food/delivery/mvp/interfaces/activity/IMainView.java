@@ -13,10 +13,6 @@ public interface IMainView extends IBaseView, IHasComponent<ActivityComponent> {
 
     void replace();
 
-    void createAdapter();
-
-    void setupComponent();
-
     void initToolBar();
 
     void initActionBar();

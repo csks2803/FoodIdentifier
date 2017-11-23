@@ -14,6 +14,7 @@
         android:background="@color/colorPrimary"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
+        app:itemBackground="@color/white"
         app:itemTextColor="@color/amber"
         app:menu="@menu/drawer_view"/>
 

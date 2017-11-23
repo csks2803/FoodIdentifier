@@ -2,12 +2,7 @@ package com.food.delivery.di.module;
 
 import android.content.Context;
 
-import com.food.delivery.di.annotation.PerActivity;
-import com.food.delivery.mvp.model.FoodPackageHolder;
-import com.food.delivery.mvp.model.FoodPackagePresenterModel;
-
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * Created by Taras Matolinets.
@@ -24,9 +19,4 @@ public class ActivityModule {
         mContext = context;
     }
 
-    @PerActivity
-    @Provides
-    FoodPackageHolder provideFoodPackage() {
-        return new FoodPackageHolder();
-    }
 }

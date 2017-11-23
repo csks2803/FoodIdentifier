@@ -15,7 +15,8 @@ import android.view.MenuItem;
 import com.food.delivery.R;
 import com.food.delivery.di.components.ActivityComponent;
 import com.food.delivery.mvp.interfaces.activity.IMainView;
-import com.food.delivery.mvp.presenter.activity.StoreInfoPresenter;
+import com.food.delivery.mvp.presenter.activity.MainActivityPresenter;
+import com.food.delivery.mvp.view.fragments.HistoryFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,10 +27,8 @@ import butterknife.ButterKnife;
  * Time: 4:24 PM
  * Company: FoodDelivery
  */
-public class MainActivity extends MvpActivity<StoreInfoPresenter> implements IMainView {
+public class MainActivity extends MvpActivity<MainActivityPresenter> implements IMainView {
 
-    @BindView(R.id.tab_stores) TabLayout mTabStores;
-    @BindView(R.id.vp_stores) ViewPager mVpStores;
     @BindView(R.id.nav_view) NavigationView mNavView;
     @BindView(R.id.toolbar_store) Toolbar mToolbarStore;
     @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
@@ -43,8 +42,8 @@ public class MainActivity extends MvpActivity<StoreInfoPresenter> implements IMa
 
     @NonNull
     @Override
-    public StoreInfoPresenter createPresenter() {
-        return new StoreInfoPresenter(mComponent);
+    public MainActivityPresenter createPresenter() {
+        return new MainActivityPresenter(mComponent);
     }
 
     @Override
@@ -82,6 +81,14 @@ public class MainActivity extends MvpActivity<StoreInfoPresenter> implements IMa
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                switch (item.getItemId()) {
+                    case R.id.nav_scan:
+                        mNavigator.replaceActivity(MainActivity.this, IDScannerActivity.class);
+                        return true;
+                    case R.id.nav_history:
+                        mNavigator.replace(MainActivity.this, HistoryFragment.class, R.id.fl_container, null, false);
+                        return true;
+                }
                 return false;
             }
         });

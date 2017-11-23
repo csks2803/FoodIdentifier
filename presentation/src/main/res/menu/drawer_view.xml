@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_home"
-        android:title="TITLE 1"/>
+        android:id="@+id/nav_scan"
+        android:title="@string/identify_product"/>
     <item
-        android:id="@+id/nav_about"
-        android:title="TITLE 2"/>
+        android:id="@+id/nav_history"
+        android:title="@string/history"/>
     <item
         android:id="@+id/nav_settings"
         android:title="TITLE 3"/>

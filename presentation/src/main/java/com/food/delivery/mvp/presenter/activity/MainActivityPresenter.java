@@ -20,10 +20,10 @@ import javax.inject.Inject;
  * Company: FoodDelivery
  */
 
-public class StoreInfoPresenter extends BasePresenter<IMainView> {
+public class MainActivityPresenter extends BasePresenter<IMainView> {
     @Inject FoodPackageHolder mFoodPackageHolder;
 
-    public StoreInfoPresenter(ActivityComponent activityComponent) {
+    public MainActivityPresenter(ActivityComponent activityComponent) {
         activityComponent.inject(this);
     }
 

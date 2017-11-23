@@ -14,43 +14,27 @@
         android:background="@color/colorPrimary"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
+        app:itemTextColor="@color/amber"
         app:menu="@menu/drawer_view"/>
 
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/coordinatorLayout"
+
+    <LinearLayout
+        android:id="@+id/ll_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_store"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways"
-                />
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tab_stores"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:tabIndicatorColor="@color/amber"
-                app:tabIndicatorHeight="@dimen/size_4"
-                app:tabTextColor="@color/white"/>
-
-        </android.support.design.widget.AppBarLayout>
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vp_stores"
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar_store"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:background="@color/colorPrimary"
             />
-    </android.support.design.widget.CoordinatorLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
+    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

@@ -3,7 +3,9 @@ package com.food.delivery.di.components;
 import com.food.delivery.di.annotation.PerActivity;
 import com.food.delivery.di.module.ActivityModule;
 import com.food.delivery.di.module.FragmentModule;
-import com.food.delivery.mvp.presenter.activity.StoreInfoPresenter;
+import com.food.delivery.mvp.presenter.fragments.HistoryPresenter;
+import com.food.delivery.mvp.presenter.activity.IdScannerPresenter;
+import com.food.delivery.mvp.presenter.activity.MainActivityPresenter;
 import com.food.delivery.mvp.view.activity.BaseActivity;
 import com.food.delivery.mvp.view.activity.MainActivity;
 
@@ -29,6 +31,9 @@ public interface ActivityComponent {
 
     ////////PRESENTER INJECTION////////////////////
 
-    void inject(StoreInfoPresenter storeListPresenter);
+    void inject(MainActivityPresenter storeListPresenter);
 
+    void inject(IdScannerPresenter idScannerPresenter);
+
+    void inject(HistoryPresenter historyPresenter);
 }

@@ -2,6 +2,8 @@ package com.food.delivery.di.components;
 
 import com.food.delivery.di.annotation.PerFragment;
 import com.food.delivery.di.module.FragmentModule;
+import com.food.delivery.mvp.presenter.fragments.HistoryPresenter;
+import com.food.delivery.mvp.presenter.fragments.ProductPresenter;
 import com.food.delivery.mvp.view.fragments.BaseFragment;
 
 import dagger.Subcomponent;
@@ -18,4 +20,7 @@ public interface FragmentComponent {
 
     void inject(BaseFragment baseFragment);
 
+    void inject(HistoryPresenter historyPresenter);
+
+    void inject(ProductPresenter productPresenter);
 }

@@ -18,24 +18,71 @@
         app:itemTextColor="@color/amber"
         app:menu="@menu/drawer_view"/>
 
-
-    <LinearLayout
-        android:id="@+id/ll_container"
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_store"
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            />
+            >
 
-        <FrameLayout
-            android:id="@+id/fl_container"
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/col_tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/view_pager_height"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:titleEnabled="false">
+
+                <ImageView
+                    android:id="@+id/iv_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/header"
+                    android:contentDescription="@null"
+                    android:fitsSystemWindows="true"
+                    android:scaleType="centerCrop"
+                    app:layout_collapseMode="parallax"/>
+
+                <View
+                    android:id="@+id/v_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.3"
+                    android:background="@android:color/black"
+                    />
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_header"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_gravity="top"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/tab_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    app:tabIndicatorColor="@android:color/white"
+                    app:tabSelectedTextColor="@android:color/white"
+                    app:tabTextColor="@color/white"/>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_product"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </FrameLayout>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            />
+    </android.support.design.widget.CoordinatorLayout>
 </android.support.v4.widget.DrawerLayout>

@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
-import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -31,8 +30,9 @@ import butterknife.ButterKnife;
 public class MainActivity extends MvpActivity<MainActivityPresenter> implements IMainView {
 
     @BindView(R.id.nav_view) NavigationView mNavView;
-    @BindView(R.id.toolbar_store) Toolbar mToolbarStore;
+    @BindView(R.id.toolbar_header) Toolbar mToolbarStore;
     @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
+    @BindView(R.id.vp_product) ViewPager vpProduct;
     private ActivityComponent mComponent;
 
     @Override
@@ -61,6 +61,11 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
     @Override
     public void initToolBar() {
         setSupportActionBar(mToolbarStore);
+    }
+
+    @Override
+    public void setAdapter() {
+
     }
 
     @Override

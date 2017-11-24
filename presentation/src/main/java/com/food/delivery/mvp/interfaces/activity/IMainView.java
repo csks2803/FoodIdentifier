@@ -15,6 +15,8 @@ public interface IMainView extends IBaseView, IHasComponent<ActivityComponent> {
 
     void initToolBar();
 
+    void setAdapter();
+
     void initActionBar();
 
     void setNavigationListener();

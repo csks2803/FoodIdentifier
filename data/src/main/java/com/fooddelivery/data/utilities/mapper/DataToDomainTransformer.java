@@ -1,7 +1,11 @@
 package com.fooddelivery.data.utilities.mapper;
 
-import com.fooddelivery.data.model.FoodPackageEntityModel;
-import com.fooddelivery.domain.model.FoodPackageDomainModel;
+import com.fooddelivery.data.model.FeedbackEntityModel;
+import com.fooddelivery.data.model.ProductEntityCharacteristicsModel;
+import com.fooddelivery.data.model.ProductEntityModel;
+import com.fooddelivery.domain.model.FeedbackDomainModel;
+import com.fooddelivery.domain.model.ProductCharacteristicsDomainModel;
+import com.fooddelivery.domain.model.ProductDomainModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,22 +16,51 @@ import java.util.List;
 
 public class DataToDomainTransformer {
 
-    public List<FoodPackageDomainModel> transformStoreModel(List<FoodPackageEntityModel> storeEntityList) {
-        List<FoodPackageDomainModel> storeDomainModelList = new ArrayList<>();
+    public ProductDomainModel transformStoreModel(ProductEntityModel productEntityModel) {
+        ProductDomainModel productDomain = new ProductDomainModel();
 
-        for (FoodPackageEntityModel store : storeEntityList) {
-            FoodPackageDomainModel storeDomainModel = new FoodPackageDomainModel();
+        productDomain.setId(productEntityModel.getId());
+        productDomain.setAbout(productEntityModel.getAbout());
 
-            storeDomainModel.setLatitude(store.getLatitude());
-            storeDomainModel.setLongitude(store.getLongitude());
-            storeDomainModel.setStoreId(store.getStoreId());
-            storeDomainModel.setStoreName(store.getStoreName());
-            storeDomainModel.setPackageInfo(store.getPackageInfo());
-            storeDomainModel.setPackagePrice(store.getPackagePrice());
-            storeDomainModel.setPackageName(store.getPackageName());
+        List<ProductCharacteristicsDomainModel> productCharacteristicList = getProductCharacteristicList(productEntityModel.getListCharacteristics());
+        productDomain.setListCharacteristics(productCharacteristicList);
+        productDomain.setTitle(productEntityModel.getTitle());
+        productDomain.setImageUrls(productEntityModel.getImageUrls());
 
-            storeDomainModelList.add(storeDomainModel);
+        List<FeedbackDomainModel> listFeedbackDomain = getListFeedbackDomain(productEntityModel.getFeedback());
+        productDomain.setFeedback(listFeedbackDomain);
+
+        return productDomain;
+    }
+
+    private List<FeedbackDomainModel> getListFeedbackDomain(List<FeedbackEntityModel> feedback) {
+        List<FeedbackDomainModel> feedbackDomainModelList = new ArrayList<>();
+
+        for (FeedbackEntityModel feedbackEntityModel : feedback) {
+            FeedbackDomainModel feedbackDomainModel = new FeedbackDomainModel();
+
+            feedbackDomainModel.setFeedback(feedbackEntityModel.getFeedback());
+            feedbackDomainModel.setUserId(feedbackEntityModel.getUserId());
+            feedbackDomainModel.setFeedbackId(feedbackEntityModel.getFeedbackId());
+            feedbackDomainModel.setProfileUrl(feedbackEntityModel.getProfileUrl());
+
+            feedbackDomainModelList.add(feedbackDomainModel);
         }
-        return storeDomainModelList;
+        return feedbackDomainModelList;
+    }
+
+    private List<ProductCharacteristicsDomainModel> getProductCharacteristicList(List<ProductEntityCharacteristicsModel> listCharacteristics) {
+        List<ProductCharacteristicsDomainModel> productCharacteristicsDomainModels = new ArrayList<>();
+
+        for (ProductEntityCharacteristicsModel characteristicEntity : listCharacteristics) {
+
+            ProductCharacteristicsDomainModel productCharacteristicsDomainModel = new ProductCharacteristicsDomainModel();
+            productCharacteristicsDomainModel.setDescription(characteristicEntity.getDescription());
+            productCharacteristicsDomainModel.setTitle(characteristicEntity.getTitle());
+
+            productCharacteristicsDomainModels.add(productCharacteristicsDomainModel);
+        }
+
+        return productCharacteristicsDomainModels;
     }
 }

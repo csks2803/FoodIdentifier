@@ -1,11 +1,9 @@
 package com.fooddelivery.data.net;
 
-import com.fooddelivery.data.model.FoodPackageEntityModel;
-
-import java.util.List;
+import com.fooddelivery.data.model.ProductEntityModel;
 
 import retrofit2.Call;
-import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 /**
  * Interface which present Otentico API
@@ -13,6 +11,6 @@ import retrofit2.http.GET;
 public interface FoodDeliveryRestService {
     String BASE_URL = "https://db.otenti.co/api/";
 
-    @GET("/api/stores")
-    Call<List<FoodPackageEntityModel>> getListStores();
+    @POST("/api/stores")
+    Call<ProductEntityModel> getProductById(String id);
 }

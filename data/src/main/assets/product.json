@@ -1,0 +1,75 @@
+{
+  "id": 1,
+  "tradeMark": "ТМ Яготинське",
+  "title": "Молоко питьевое ультрапастеризованное 3,2% жира",
+  "about": "Ультрапастеризованное молоко ТМ «Яготинское» — это высококачественное натуральное молоко, которое выпускается в сверхсовременной упаковке Тетра Пак и имеет срок хранения до 180 суток. Упаковка Тетра Пак надежно защищает продукт от воздействия внешней среды: воздуха, света (ультрафиолета), влаги и бактерий, и продлевает срок хранения молока до 180 суток (при отсутствии прямого солнечного света и температуры не выше 25 ° С). Длительный срок хранения молока обеспечивается особой технологией ультрапастеризации. Так, лучше фермерское молоко нагревается до температуры 135°С в течение нескольких секунд, а затем быстро охлаждается и разливается в асептическую упаковку в стерильных условиях без контакта с внешней средой. Таким образом в продукте уничтожаются вредные бактерии и сохраняется максимальное количество полезных веществ. Ультрапастеризованное молоко производится на современном заводе детского молочного питания — Филиале ОАО «Яготинский маслозавод» «Яготинское для детей» исключительно из фермерского молока на технологически совершенном оборудовании мировых производителей, которое обеспечивает стабильно высокое качество продукции. Молоко ТМ «Яготинское» в упаковке Тетра Пак удобно брать с собой в дорогу, путешествие или на природу, ведь его можно хранить при комнатной температуре. Молоко — это прекрасный источник кальция, фосфора, витамина D и других полезных веществ. Молоко необходимо детям, взрослым и всем, кто заботится о своем здоровье. С молоком можно приготовить множество вкусных напитков и блюд: блины, молочные супы, полезные смузи, каши и многое другое.",
+  "characteristics": [
+    {
+      "title": "Упаковка",
+      "description": "Tetra Brik Aseptic"
+    },
+    {
+      "title": "Упаковка",
+      "description": "Tetra Brik Aseptic"
+    },
+    {
+      "title": "Масса нетто",
+      "description": "950 г"
+    },
+    {
+      "title": "Срок и условия хранения",
+      "description": "180 суток при температуре +1...+25°С"
+    },
+    {
+      "title": "Штрих-код",
+      "description": "4823005205227"
+    },
+    {
+      "title": "Размер упаковки",
+      "description": "7,2×7,2×21,5 см"
+    }
+  ],
+  "imageUrls": [
+    "http://milkalliance.com.ua/uploads/gallery_photo/photo/0380/31.jpg",
+    "http://milkalliance.com.ua/i/cms_product/gallery_photo/photo/0380/26.jpg",
+    "http://milkalliance.com.ua/uploads/gallery_photo/photo/0383/26.jpg",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5El9S0uvVPgnY24jdV_x9zXhAPPFblbwrTci-b6rSx5yFP7WCGw"
+  ],
+  "feedback": [
+    {
+      "feedbackId": 1,
+      "userId": 1,
+      "feedback": "Молоко просто супер.",
+      "userName": "Taras",
+      "profileUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAp2AAAAJDBlN2RlOGViLTAyOGItNDA0Ni1hMTI1LWJmZGYwYWNkZTg4Zg.jpg"
+    },
+    {
+      "feedbackId": 2,
+      "userId": 2,
+      "feedback": "Молоко просто супер.",
+      "userName": "Taras",
+      "profileUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAp2AAAAJDBlN2RlOGViLTAyOGItNDA0Ni1hMTI1LWJmZGYwYWNkZTg4Zg.jpg"
+    },
+    {
+      "feedbackId": 3,
+      "userId": "3",
+      "feedback": "Молоко просто супер.",
+      "userName": "Taras",
+      "profileUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAp2AAAAJDBlN2RlOGViLTAyOGItNDA0Ni1hMTI1LWJmZGYwYWNkZTg4Zg.jpg"
+    },
+    {
+      "feedbackId": 4,
+      "userId": "4",
+      "feedback": "Молоко просто супер.",
+      "userName": "Taras",
+      "profileUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAp2AAAAJDBlN2RlOGViLTAyOGItNDA0Ni1hMTI1LWJmZGYwYWNkZTg4Zg.jpg"
+    },
+    {
+      "feedbackId": 5,
+      "userId": "5",
+      "feedback": "Молоко просто супер.",
+      "userName": "Taras",
+      "profileUrl": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAp2AAAAJDBlN2RlOGViLTAyOGItNDA0Ni1hMTI1LWJmZGYwYWNkZTg4Zg.jpg"
+    }
+  ]
+}

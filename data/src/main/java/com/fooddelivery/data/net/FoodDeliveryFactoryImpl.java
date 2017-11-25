@@ -2,13 +2,11 @@ package com.fooddelivery.data.net;
 
 import android.content.Context;
 
-import com.fooddelivery.data.model.FoodPackageEntityModel;
+import com.fooddelivery.data.model.ProductEntityModel;
 import com.fooddelivery.data.utilities.Utility;
 import com.fooddelivery.data.utilities.mapper.DataToDomainTransformer;
 import com.fooddelivery.data.utilities.mapper.JsonMapper;
-import com.fooddelivery.domain.model.FoodPackageDomainModel;
-
-import java.util.List;
+import com.fooddelivery.domain.model.ProductDomainModel;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -29,27 +27,27 @@ class FoodDeliveryFactoryImpl {
         mTransformer = transformer;
     }
 
-    Observable<List<FoodPackageDomainModel>> getStoreList() {
-        return Observable.create(new Observable.OnSubscribe<List<FoodPackageDomainModel>>() {
+    Observable<ProductDomainModel> getProduct(final String id) {
+        return Observable.create(new Observable.OnSubscribe<ProductDomainModel>() {
             @Override
-            public void call(Subscriber<? super List<FoodPackageDomainModel>> subscriber) {
-//                final Call<List<FoodPackageEntityModel>> request = mApi.getService().getListStores();
-//                request.enqueue(new Callback<List<FoodPackageEntityModel>>() {
+            public void call(Subscriber<? super ProductDomainModel> subscriber) {
+//                final Call<ProductEntityModel> request = mApi.getService().getProductById(id);
+//                request.enqueue(new Callback<List<ProductEntityModel>>() {
 //                    @Override
-//                    public void onResponse(Call<List<FoodPackageEntityModel>> call, Response<List<FoodPackageEntityModel>> response) {
+//                    public void onResponse(Call<List<ProductEntityModel>> call, Response<List<ProductEntityModel>> response) {
 //
 //                    }
 //
 //                    @Override
-//                    public void onFailure(Call<List<FoodPackageEntityModel>> call, Throwable t) {
+//                    public void onFailure(Call<List<ProductEntityModel>> call, Throwable t) {
 //
 //                    }
 //                });
 
-                String json = Utility.loadJSONFromAsset(mContext, "storelist.json");
+                String json = Utility.loadJSONFromAsset(mContext, "product.json");
 
-                List<FoodPackageEntityModel> listStoreEntity = new JsonMapper().fromJsonArray(json, FoodPackageEntityModel.class);
-                List<FoodPackageDomainModel> storeDomainModelList = mTransformer.transformStoreModel(listStoreEntity);
+                ProductEntityModel listStoreEntity = new JsonMapper().fromJson(json, ProductEntityModel.class);
+                ProductDomainModel storeDomainModelList = mTransformer.transformStoreModel(listStoreEntity);
                 subscriber.onNext(storeDomainModelList);
             }
         });

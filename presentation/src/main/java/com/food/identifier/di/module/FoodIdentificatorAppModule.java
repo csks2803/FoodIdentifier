@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.food.identifier.UIThread;
 import com.food.identifier.application.FoodIdentifierApplication;
+import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.model.ProductPresentationModel;
 import com.fooddelivery.data.executor.JobExecutor;
 import com.fooddelivery.data.net.FoodIdentifierFactory;
@@ -57,7 +58,7 @@ public class FoodIdentificatorAppModule {
 
     @Provides
     @Singleton
-    ProductPresentationModel provideProductPresentratio() {
-        return new ProductPresentationModel();
+    ProductHolder provideProductPresentratio() {
+        return new ProductHolder();
     }
 }

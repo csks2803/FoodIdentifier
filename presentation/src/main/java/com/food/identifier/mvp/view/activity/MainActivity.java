@@ -14,9 +14,12 @@ import android.view.MenuItem;
 import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IMainView;
+import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.activity.MainActivityPresenter;
 import com.food.identifier.mvp.view.adapters.ViewPagerProductDescriptionAdapter;
 import com.food.identifier.mvp.view.fragments.ProductFragment;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +36,9 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
     @BindView(R.id.toolbar_header) Toolbar mToolbarStore;
     @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
     @BindView(R.id.vp_product) ViewPager vpProduct;
+
+    @Inject ProductHolder mProductHolder;
+
     private ActivityComponent mComponent;
 
     @Override

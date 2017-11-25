@@ -1,16 +1,18 @@
 package com.food.identifier.mvp.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
-import android.view.View;
 import android.widget.ProgressBar;
 
 import com.food.identifier.R;
 import com.food.identifier.mvp.interfaces.activity.IIdScannerView;
 import com.food.identifier.mvp.presenter.activity.IdScannerPresenter;
 import com.google.zxing.ResultPoint;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
@@ -30,7 +32,6 @@ import static android.view.View.VISIBLE;
 public class IdScannerActivity extends MvpActivity<IdScannerPresenter> implements IIdScannerView {
     private String lastText;
 
-    @BindView(R.id.zxing_barcode_scanner) DecoratedBarcodeView mBarcodeScannerView;
     @BindView(R.id.pr_loader) ProgressBar mProgressBar;
 
     @NonNull
@@ -44,40 +45,21 @@ public class IdScannerActivity extends MvpActivity<IdScannerPresenter> implement
         setContentView(R.layout.activity_code_scanner);
         ButterKnife.bind(this);
 
-        mBarcodeScannerView.decodeContinuous(callback);
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.initiateScan();
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        mBarcodeScannerView.resume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mBarcodeScannerView.pause();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return mBarcodeScannerView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
-    }
-
-    private BarcodeCallback callback = new BarcodeCallback() {
-
-        @Override
-        public void barcodeResult(BarcodeResult result) {
-            if (result.getText() == null || result.getText().equals(lastText)) {
-                mPresenter.sendScannedResult(result.getText());
-            }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null && result.getContents() != null && !result.getContents().equals(lastText)) {
+            lastText = result.getContents();
+            mPresenter.sendScannedResult(result.getContents());
+        } else {
+            // This is important, otherwise the result will not be passed to the fragment
+            super.onActivityResult(requestCode, resultCode, data);
         }
-
-        @Override
-        public void possibleResultPoints(List<ResultPoint> resultPoints) {
-
-        }
-    };
+    }
 
     @Override
     public void startLoading() {

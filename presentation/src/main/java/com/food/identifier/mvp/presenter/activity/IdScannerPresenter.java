@@ -91,6 +91,7 @@ public class IdScannerPresenter extends BasePresenter<IIdScannerView> {
                 @Override
                 public void onNext(ProductPresentationModel productPresentation) {
                     mProductHolder.setProductHolder(productPresentation);
+                    mView.replaceToFoodProduct();
                 }
             });
         }

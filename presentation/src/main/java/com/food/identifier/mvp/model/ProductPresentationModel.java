@@ -1,8 +1,5 @@
 package com.food.identifier.mvp.model;
 
-import com.fooddelivery.domain.model.FeedbackDomainModel;
-import com.fooddelivery.domain.model.ProductCharacteristicsDomainModel;
-
 import java.util.List;
 
 /**

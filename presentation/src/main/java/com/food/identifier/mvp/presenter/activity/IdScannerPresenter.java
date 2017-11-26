@@ -51,7 +51,6 @@ public class IdScannerPresenter extends BasePresenter<IIdScannerView> {
     }
 
     public void sendScannedResult(String id) {
-
         UseCaseGetProductByIdSubscriber subscriber = new UseCaseGetProductByIdSubscriber();
         mComposeSubscription.add(subscriber);
 

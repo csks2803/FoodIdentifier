@@ -1,7 +1,6 @@
 package com.food.identifier.mvp.view.activity;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,7 +8,6 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.design.widget.TabLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
@@ -19,10 +17,13 @@ import android.support.v7.graphics.Palette.PaletteAsyncListener;
 import android.support.v7.graphics.Palette.Swatch;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IMainView;
+import com.food.identifier.mvp.model.ItemDrawerModel;
 import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.activity.MainActivityPresenter;
 import com.food.identifier.mvp.view.adapters.ProductImageAdapter;
@@ -34,7 +35,12 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import me.relex.circleindicator.CircleIndicator;
+import butterknife.OnClick;
+
+import static android.view.View.FOCUS_LEFT;
+import static android.view.View.FOCUS_RIGHT;
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /**
  * Created by Taras Matolinets
@@ -44,14 +50,17 @@ import me.relex.circleindicator.CircleIndicator;
  */
 public class MainActivity extends MvpActivity<MainActivityPresenter> implements IMainView, OnPageChangeListener {
 
+    public static final int DEFAULT_POSITION = 0;
     @BindView(R.id.nav_view) NavigationView mNavView;
     @BindView(R.id.toolbar_header) Toolbar mToolbarStore;
     @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
     @BindView(R.id.vp_product) ViewPager mVpProduct;
     @BindView(R.id.vp_product_image) ViewPager mVpProductImage;
     @BindView(R.id.tab_layout) TabLayout mTabLayout;
-
     @BindView(R.id.col_tool_bar) CollapsingToolbarLayout mCollapsingToolBar;
+    @BindView(R.id.iv_left_nav) ImageView mIvLeftNav;
+    @BindView(R.id.iv_right_nav) ImageView mIvRightNav;
+
 
     @Inject ProductHolder mProductHolder;
 
@@ -67,11 +76,6 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
     @Override
     public MainActivityPresenter createPresenter() {
         return new MainActivityPresenter(mComponent);
-    }
-
-    @Override
-    public void replace() {
-//        mNavigator.replace(this, ProductFragment.class, R.id.fl_main_splash, null, false);
     }
 
     @Override
@@ -96,7 +100,7 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
     public void initActionBar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
@@ -120,6 +124,16 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
         });
     }
 
+    @OnClick(R.id.iv_left_nav)
+    public void navLeftClick() {
+        mVpProductImage.arrowScroll(FOCUS_LEFT);
+    }
+
+    @OnClick(R.id.iv_right_nav)
+    public void navRightClick() {
+        mVpProductImage.arrowScroll(FOCUS_RIGHT);
+    }
+
     @Override
     public void setupTabLayout() {
         mTabLayout.setupWithViewPager(mVpProduct);
@@ -139,13 +153,19 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
         });
     }
 
-
     @Override
     public void setProductImageAdapter(List<String> imageUrls) {
         ProductImageAdapter adapter = new ProductImageAdapter(this, imageUrls);
 
         mVpProductImage.setAdapter(adapter);
+        mVpProductImage.setCurrentItem(0);
+        mVpProductImage.setOffscreenPageLimit(1);
         mVpProductImage.addOnPageChangeListener(this);
+    }
+
+    @Override
+    public void prepareMenuAdapter(List<ItemDrawerModel> list) {
+
     }
 
     @Override
@@ -179,6 +199,16 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
 
     @Override
     public void onPageSelected(int position) {
+        if (position == DEFAULT_POSITION) {
+            mIvLeftNav.setVisibility(GONE);
+            mIvRightNav.setVisibility(VISIBLE);
+        } else if (position == mVpProductImage.getAdapter().getCount() - 1) {
+            mIvRightNav.setVisibility(GONE);
+            mIvLeftNav.setVisibility(VISIBLE);
+        } else {
+            mIvRightNav.setVisibility(VISIBLE);
+            mIvLeftNav.setVisibility(VISIBLE);
+        }
         mPresenter.changeCollapseColor(this, position);
     }
 

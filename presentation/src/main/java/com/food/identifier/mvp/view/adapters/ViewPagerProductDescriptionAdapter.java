@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.food.identifier.R;
 import com.food.identifier.mvp.view.fragments.ProductAboutFragment;
-import com.food.identifier.mvp.view.fragments.ProductDescriptionFragment;
+import com.food.identifier.mvp.view.fragments.ProductCharacteristicFragment;
 import com.food.identifier.mvp.view.fragments.ProductFeedbackFragment;
 
 /**
@@ -35,7 +35,7 @@ public class ViewPagerProductDescriptionAdapter extends FragmentStatePagerAdapte
             case ABOUT_PRODUCT:
                 return new ProductAboutFragment();
             case DESCRIPTION_PRODUCT:
-                return new ProductDescriptionFragment();
+                return new ProductCharacteristicFragment();
             case FEEDBACK_PRODUCT:
                 return new ProductFeedbackFragment();
             default:

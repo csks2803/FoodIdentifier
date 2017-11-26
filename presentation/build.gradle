@@ -84,7 +84,6 @@ dependencies {
     compile presentationDependencies.multidex
     compile presentationDependencies.circlePageIndicator
     compile presentationDependencies.gsmPlayService
-//    compile presentationDependencies.zxid
     compile presentationDependencies.zxidEmbedded
 //    compile presentationDependencies.observableScrollView
 

@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.food.identifier.R;
-import com.food.identifier.mvp.interfaces.fragment.IProductFeedbackView;
-import com.food.identifier.mvp.model.FeedbackPresentationModel;
-import com.food.identifier.mvp.presenter.fragments.ProductFeedbackPresenter;
-import com.food.identifier.mvp.view.adapters.FeedbackAdapter;
+import com.food.identifier.mvp.interfaces.fragment.IProductCharacteristicView;
+import com.food.identifier.mvp.model.ProductCharacteristicsPresentationModel;
+import com.food.identifier.mvp.presenter.fragments.ProductCharacteristicPresenter;
+import com.food.identifier.mvp.view.adapters.CharacteristicAdapter;
 
 import java.util.List;
 
@@ -25,15 +25,14 @@ import butterknife.Unbinder;
  * Created by taras on 11/24/2017.
  */
 
-public class ProductFeedbackFragment extends MvpFragment<ProductFeedbackPresenter> implements IProductFeedbackView {
-    @BindView(R.id.rv_feedback) RecyclerView mRvFeedback;
-
+public class ProductCharacteristicFragment extends MvpFragment<ProductCharacteristicPresenter> implements IProductCharacteristicView {
+    @BindView(R.id.rv_characteristics) RecyclerView mRvCharacteristics;
     private Unbinder mUnBinder;
 
     @NonNull
     @Override
-    public ProductFeedbackPresenter createPresenter() {
-        return new ProductFeedbackPresenter(createFragmentComponent());
+    public ProductCharacteristicPresenter createPresenter() {
+        return new ProductCharacteristicPresenter(createFragmentComponent());
     }
 
     @NonNull
@@ -42,11 +41,10 @@ public class ProductFeedbackFragment extends MvpFragment<ProductFeedbackPresente
         return getClass().getName();
     }
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_feedback, container, false);
+        View view = inflater.inflate(R.layout.fragment_characteristic, container, false);
 
         mUnBinder = ButterKnife.bind(this, view);
         return view;
@@ -60,14 +58,14 @@ public class ProductFeedbackFragment extends MvpFragment<ProductFeedbackPresente
 
     @Override
     public void setupRecycleView() {
-        mRvFeedback.setHasFixedSize(true);
+        mRvCharacteristics.setHasFixedSize(true);
         final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        mRvFeedback.setLayoutManager(layoutManager);
+        mRvCharacteristics.setLayoutManager(layoutManager);
     }
 
     @Override
-    public void setupAdapter(List<FeedbackPresentationModel> listFeedback) {
-        FeedbackAdapter adapter = new FeedbackAdapter(getActivity(), listFeedback);
-        mRvFeedback.setAdapter(adapter);
+    public void setupAdapter(List<ProductCharacteristicsPresentationModel> listCharacteristics) {
+        CharacteristicAdapter adapter = new CharacteristicAdapter(getActivity(), listCharacteristics);
+        mRvCharacteristics.setAdapter(adapter);
     }
 }

@@ -3,14 +3,17 @@ package com.food.identifier.mvp.view.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.food.identifier.R;
-import com.food.identifier.mvp.interfaces.activity.IProdcutAboutView;
+import com.food.identifier.mvp.interfaces.fragment.IProductAboutView;
 import com.food.identifier.mvp.presenter.fragments.ProductAboutPresenter;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -18,7 +21,10 @@ import butterknife.Unbinder;
  * Created by taras on 11/24/2017.
  */
 
-public class ProductAboutFragment extends MvpFragment<ProductAboutPresenter> implements IProdcutAboutView {
+public class ProductAboutFragment extends MvpFragment<ProductAboutPresenter> implements IProductAboutView {
+
+    @BindView(R.id.tv_about_product) TextView mTvAboutProduct;
+
     private Unbinder mUnBinder;
 
     @NonNull
@@ -38,13 +44,19 @@ public class ProductAboutFragment extends MvpFragment<ProductAboutPresenter> imp
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_about, container, false);
 
-      mUnBinder =   ButterKnife.bind(this,view);
+        mUnBinder = ButterKnife.bind(this, view);
+
         return view;
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         mUnBinder.unbind();
+    }
+
+    @Override
+    public void setAboutText(String about) {
+        mTvAboutProduct.setText(about);
     }
 }

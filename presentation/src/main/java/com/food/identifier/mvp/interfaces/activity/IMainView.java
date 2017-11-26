@@ -1,7 +1,11 @@
 package com.food.identifier.mvp.interfaces.activity;
 
+import android.graphics.Bitmap;
+
 import com.food.identifier.di.IHasComponent;
 import com.food.identifier.di.components.ActivityComponent;
+
+import java.util.List;
 
 /**
  * Created by Taras Matolinets
@@ -20,4 +24,10 @@ public interface IMainView extends IBaseView, IHasComponent<ActivityComponent> {
     void initActionBar();
 
     void setNavigationListener();
+
+    void setupTabLayout();
+
+    void setCollapseToolBarColor(Bitmap resource);
+
+    void setProductImageAdapter(List<String> imageUrls);
 }

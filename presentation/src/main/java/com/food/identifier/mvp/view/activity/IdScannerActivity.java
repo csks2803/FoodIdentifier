@@ -45,8 +45,9 @@ public class IdScannerActivity extends MvpActivity<IdScannerPresenter> implement
         setContentView(R.layout.activity_code_scanner);
         ButterKnife.bind(this);
 
-        IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.initiateScan();
+//        IntentIntegrator integrator = new IntentIntegrator(this);
+//        integrator.initiateScan();
+        mPresenter.sendScannedResult("");
     }
 
     @Override

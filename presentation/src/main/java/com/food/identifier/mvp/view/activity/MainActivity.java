@@ -1,13 +1,22 @@
 package com.food.identifier.mvp.view.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
+import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.graphics.Palette;
+import android.support.v7.graphics.Palette.PaletteAsyncListener;
+import android.support.v7.graphics.Palette.Swatch;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
@@ -16,13 +25,16 @@ import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IMainView;
 import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.activity.MainActivityPresenter;
+import com.food.identifier.mvp.view.adapters.ProductImageAdapter;
 import com.food.identifier.mvp.view.adapters.ViewPagerProductDescriptionAdapter;
-import com.food.identifier.mvp.view.fragments.ProductFragment;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import me.relex.circleindicator.CircleIndicator;
 
 /**
  * Created by Taras Matolinets
@@ -30,12 +42,16 @@ import butterknife.ButterKnife;
  * Time: 4:24 PM
  * Company: FoodDelivery
  */
-public class MainActivity extends MvpActivity<MainActivityPresenter> implements IMainView {
+public class MainActivity extends MvpActivity<MainActivityPresenter> implements IMainView, OnPageChangeListener {
 
     @BindView(R.id.nav_view) NavigationView mNavView;
     @BindView(R.id.toolbar_header) Toolbar mToolbarStore;
     @BindView(R.id.drawer_layout) DrawerLayout mDrawerLayout;
-    @BindView(R.id.vp_product) ViewPager vpProduct;
+    @BindView(R.id.vp_product) ViewPager mVpProduct;
+    @BindView(R.id.vp_product_image) ViewPager mVpProductImage;
+    @BindView(R.id.tab_layout) TabLayout mTabLayout;
+
+    @BindView(R.id.col_tool_bar) CollapsingToolbarLayout mCollapsingToolBar;
 
     @Inject ProductHolder mProductHolder;
 
@@ -55,7 +71,7 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
 
     @Override
     public void replace() {
-        mNavigator.replace(this, ProductFragment.class, R.id.fl_main_splash, null, false);
+//        mNavigator.replace(this, ProductFragment.class, R.id.fl_main_splash, null, false);
     }
 
     @Override
@@ -73,7 +89,7 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
     @Override
     public void setAdapter() {
         ViewPagerProductDescriptionAdapter adapter = new ViewPagerProductDescriptionAdapter(this, getSupportFragmentManager());
-        vpProduct.setAdapter(adapter);
+        mVpProduct.setAdapter(adapter);
     }
 
     @Override
@@ -105,6 +121,34 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
     }
 
     @Override
+    public void setupTabLayout() {
+        mTabLayout.setupWithViewPager(mVpProduct);
+    }
+
+    @Override
+    public void setCollapseToolBarColor(Bitmap resource) {
+        Palette.from(resource).generate(new PaletteAsyncListener() {
+            @Override
+            public void onGenerated(Palette palette) {
+                Swatch vibrant = palette.getVibrantSwatch();
+                if (vibrant != null) {
+                    mCollapsingToolBar.setContentScrimColor(vibrant.getTitleTextColor());
+                    mCollapsingToolBar.setStatusBarScrimColor(vibrant.getRgb());
+                }
+            }
+        });
+    }
+
+
+    @Override
+    public void setProductImageAdapter(List<String> imageUrls) {
+        ProductImageAdapter adapter = new ProductImageAdapter(this, imageUrls);
+
+        mVpProductImage.setAdapter(adapter);
+        mVpProductImage.addOnPageChangeListener(this);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {
@@ -128,4 +172,18 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
         return mComponent;
     }
 
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        mPresenter.changeCollapseColor(this, position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
 }

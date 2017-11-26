@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_miny"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="@drawable/ripple_package"
+    card_view:cardCornerRadius="@dimen/size_8"
+    card_view:cardElevation="@dimen/size_8"
+    >
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cons_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        >
+
+        <ImageView
+            android:id="@+id/iv_user"
+            android:layout_width="@dimen/size_52"
+            android:layout_height="@dimen/size_52"
+            android:layout_margin="@dimen/margin_small"
+            android:contentDescription="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_big"
+            android:layout_marginTop="@dimen/margin_small"
+            android:ellipsize="end"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_12"
+            android:textStyle="normal"
+            app:layout_constraintLeft_toRightOf="@+id/iv_user"
+            app:layout_constraintTop_toTopOf="@+id/iv_user"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginTop="@dimen/margin_small"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_16"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/iv_user"
+            app:layout_constraintTop_toBottomOf="@+id/iv_user"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>

@@ -7,15 +7,10 @@ import android.graphics.Bitmap;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
-import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IMainView;
-import com.food.identifier.mvp.model.ItemDrawerModel;
 import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.BasePresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -39,26 +34,8 @@ public class MainActivityPresenter extends BasePresenter<IMainView> {
         mView.initActionBar();
         mView.setupTabLayout();
         mView.setAdapter();
-        List<ItemDrawerModel> list = prepareDataForMenuAdapter(activity);
-        mView.prepareMenuAdapter(list);
         mView.setNavigationListener();
         mView.setProductImageAdapter(mProductHolder.getProductHolder().getImageUrls());
-    }
-
-    private List<ItemDrawerModel> prepareDataForMenuAdapter(Context context) {
-        List<ItemDrawerModel> listItems = new ArrayList<>();
-
-        ItemDrawerModel itemIdentify = new ItemDrawerModel();
-        itemIdentify.setTitle(context.getString(R.string.identify_product));
-
-        listItems.add(itemIdentify);
-
-        ItemDrawerModel itemHistory = new ItemDrawerModel();
-        itemHistory.setTitle(context.getString(R.string.products_history));
-
-        listItems.add(itemHistory);
-
-        return listItems;
     }
 
     @Override

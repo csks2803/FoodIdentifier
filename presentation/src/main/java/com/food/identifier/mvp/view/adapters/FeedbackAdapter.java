@@ -60,7 +60,7 @@ public class FeedbackAdapter extends RecyclerView.Adapter<FeedbackAdapter.Feedba
     }
 
     static class FeedbackViewHolder extends ViewHolder {
-        @BindView(R.id.iv_user) ImageView ivUser;
+        @BindView(R.id.iv_user_avatar) ImageView ivUser;
         @BindView(R.id.tv_feedback) TextView tvFeedback;
         @BindView(R.id.tv_user_name) TextView tvUserName;
 

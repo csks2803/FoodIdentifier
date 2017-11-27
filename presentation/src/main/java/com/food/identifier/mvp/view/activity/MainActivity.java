@@ -17,13 +17,11 @@ import android.support.v7.graphics.Palette.PaletteAsyncListener;
 import android.support.v7.graphics.Palette.Swatch;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IMainView;
-import com.food.identifier.mvp.model.ItemDrawerModel;
 import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.activity.MainActivityPresenter;
 import com.food.identifier.mvp.view.adapters.ProductImageAdapter;
@@ -161,11 +159,6 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
         mVpProductImage.setCurrentItem(0);
         mVpProductImage.setOffscreenPageLimit(1);
         mVpProductImage.addOnPageChangeListener(this);
-    }
-
-    @Override
-    public void prepareMenuAdapter(List<ItemDrawerModel> list) {
-
     }
 
     @Override

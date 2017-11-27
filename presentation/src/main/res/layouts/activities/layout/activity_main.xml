@@ -13,18 +13,10 @@
         android:layout_gravity="start"
         android:background="@color/white"
         app:headerLayout="@layout/drawer_header"
-        app:itemBackground="@color/white"
-        app:itemTextColor="@color/amber"
-        app:menu="@menu/drawer_view">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_feedback"
-            android:layout_width="@dimen/size_0"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/white"
-            />
+        app:itemBackground="@drawable/ripple_green"
+        app:itemTextColor="@color/colorPrimary"
+        app:menu="@menu/drawer_view"
+        app:theme="@style/NavigationDrawerItemStyle">
 
     </android.support.design.widget.NavigationView>
 
@@ -67,8 +59,8 @@
                         android:layout_height="@dimen/size_52"
                         android:layout_gravity="center_vertical|start"
                         android:contentDescription="@null"
-                        android:visibility="gone"
-                        android:src="@drawable/ic_arrow_left_white"/>
+                        android:src="@drawable/ic_arrow_left_white"
+                        android:visibility="gone"/>
 
                     <ImageView
                         android:id="@+id/iv_right_nav"
@@ -76,8 +68,8 @@
                         android:layout_height="@dimen/size_52"
                         android:layout_gravity="center_vertical|end"
                         android:contentDescription="@null"
-                        android:visibility="gone"
-                        android:src="@drawable/ic_arrow_right_white"/>
+                        android:src="@drawable/ic_arrow_right_white"
+                        android:visibility="gone"/>
                 </FrameLayout>
 
                 <View

@@ -8,7 +8,7 @@
     android:layout_margin="@dimen/margin_miny"
     android:clickable="true"
     android:focusable="true"
-    android:foreground="@drawable/ripple_package"
+    android:foreground="@drawable/ripple_green"
     card_view:cardCornerRadius="@dimen/size_8"
     card_view:cardElevation="@dimen/size_8"
     >
@@ -21,7 +21,7 @@
         >
 
         <ImageView
-            android:id="@+id/iv_user"
+            android:id="@+id/iv_user_avatar"
             android:layout_width="@dimen/size_52"
             android:layout_height="@dimen/size_52"
             android:layout_margin="@dimen/margin_small"
@@ -39,8 +39,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/font_size_12"
             android:textStyle="normal"
-            app:layout_constraintLeft_toRightOf="@+id/iv_user"
-            app:layout_constraintTop_toTopOf="@+id/iv_user"
+            app:layout_constraintLeft_toRightOf="@+id/iv_user_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_user_avatar"
             />
 
 
@@ -54,8 +54,8 @@
             android:textSize="@dimen/font_size_16"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@id/iv_user"
-            app:layout_constraintTop_toBottomOf="@+id/iv_user"/>
+            app:layout_constraintLeft_toLeftOf="@id/iv_user_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_user_avatar"/>
 
 
     </android.support.constraint.ConstraintLayout>

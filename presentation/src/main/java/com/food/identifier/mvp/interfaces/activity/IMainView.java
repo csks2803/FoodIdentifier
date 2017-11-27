@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 
 import com.food.identifier.di.IHasComponent;
 import com.food.identifier.di.components.ActivityComponent;
-import com.food.identifier.mvp.model.ItemDrawerModel;
 
 import java.util.List;
 
@@ -29,6 +28,4 @@ public interface IMainView extends IBaseView, IHasComponent<ActivityComponent> {
     void setCollapseToolBarColor(Bitmap resource);
 
     void setProductImageAdapter(List<String> imageUrls);
-
-    void prepareMenuAdapter(List<ItemDrawerModel> list);
 }

@@ -38,7 +38,8 @@ ext {
     glideVersion = '4.3.1'
     observableScrolView = '1.6.0'
     googleGsmVersion = '11.6.0'
-     zxingEmbeddedVersion = '3.5.0'
+    zxingEmbeddedVersion = '3.5.0'
+    ormliteVersion = '5.0'
 
 /////////////////////// TESTING ////////////////////////////////
     robolectricVersion = '3.0'
@@ -125,6 +126,7 @@ ext {
             jackson              : "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}",
             okhttp3              : "com.squareup.okhttp3:okhttp:${okHttpVersion3}",
             loggingInterceptor   : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion3}",
+            ormLite              : "com.j256.ormlite:ormlite-android:${ormliteVersion}",
     ]
 
     dataTestDependencies = [

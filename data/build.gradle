@@ -54,6 +54,7 @@ dependencies {
     compile dataDependencies.jackson
     compile dataDependencies.okhttp3
     compile dataDependencies.loggingInterceptor
+    compile dataDependencies.ormLite
 
     androidTestCompile dataTestDependencies.junit
     androidTestCompile dataTestDependencies.assertj

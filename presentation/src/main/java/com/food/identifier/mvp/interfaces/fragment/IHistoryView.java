@@ -7,4 +7,6 @@ import com.food.identifier.mvp.interfaces.activity.IBaseView;
  */
 
 public interface IHistoryView extends IBaseView {
+
+    void setAdapter();
 }

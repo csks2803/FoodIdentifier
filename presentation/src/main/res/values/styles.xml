@@ -10,6 +10,7 @@
 
     <style name="NavigationDrawerItemStyle">
         <item name="android:listDivider">@color/amber</item>
+        <item name="android:textColorSecondary">@color/amber</item>
         <item name="android:textSize">@dimen/font_size_16</item>
         <item name="android:listPreferredItemHeightSmall">@dimen/size_52</item>
     </style>

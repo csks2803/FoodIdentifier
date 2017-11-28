@@ -18,6 +18,7 @@ import android.support.v7.graphics.Palette.Swatch;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
@@ -26,6 +27,7 @@ import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.activity.MainActivityPresenter;
 import com.food.identifier.mvp.view.adapters.ProductImageAdapter;
 import com.food.identifier.mvp.view.adapters.ViewPagerProductDescriptionAdapter;
+import com.food.identifier.mvp.view.fragments.HistoryFragment;
 
 import java.util.List;
 
@@ -108,13 +110,14 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
         mNavView.setNavigationItemSelectedListener(new OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                mDrawerLayout.closeDrawer(mNavView);
 
                 switch (item.getItemId()) {
                     case R.id.nav_scan:
-                        mNavigator.replaceActivity(MainActivity.this, IdScannerActivity.class);
+                        mNavigator.replaceActivityAnimation(MainActivity.this, IdScannerActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
                         return true;
                     case R.id.nav_history:
-                        // mNavigator.replace(MainActivity.this, HistoryFragment.class, R.id.fl_container, null, false);
+                        mNavigator.replace(MainActivity.this, HistoryFragment.class, R.id.fl_container, null, false);
                         return true;
                 }
                 return false;
@@ -156,9 +159,9 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
         ProductImageAdapter adapter = new ProductImageAdapter(this, imageUrls);
 
         mVpProductImage.setAdapter(adapter);
-        mVpProductImage.setCurrentItem(0);
         mVpProductImage.setOffscreenPageLimit(1);
         mVpProductImage.addOnPageChangeListener(this);
+        onPageSelected(0);
     }
 
     @Override

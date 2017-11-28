@@ -6,20 +6,6 @@
                                         android:layout_height="match_parent"
     >
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white"
-        app:headerLayout="@layout/drawer_header"
-        app:itemBackground="@drawable/ripple_green"
-        app:itemTextColor="@color/colorPrimary"
-        app:menu="@menu/drawer_view"
-        app:theme="@style/NavigationDrawerItemStyle">
-
-    </android.support.design.widget.NavigationView>
-
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
@@ -109,4 +95,24 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             />
     </android.support.design.widget.CoordinatorLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        app:headerLayout="@layout/item_navigation_header"
+        app:itemBackground="@drawable/ripple_green"
+        app:itemTextColor="@color/colorPrimary"
+        app:menu="@menu/drawer_view"
+        app:theme="@style/NavigationDrawerItemStyle">
+
+    </android.support.design.widget.NavigationView>
+
 </android.support.v4.widget.DrawerLayout>

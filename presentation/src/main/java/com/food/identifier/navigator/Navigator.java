@@ -132,10 +132,23 @@ public class Navigator {
         activity.startActivity(intent);
     }
 
+    public void replaceActivityAnimation(Activity activity, Class className, int startAnimation, int endAnimation) {
+        Intent intent = new Intent(activity, className);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(startAnimation, endAnimation);
+    }
+
     public void replaceActivityFlag(Activity activity, Class className, int flags) {
         Intent intent = new Intent(activity, className);
         intent.addFlags(flags);
         activity.startActivity(intent);
+    }
+
+    public void replaceActivityAnimation(Activity activity, Class className, int flags, int startAnimation, int endAnimation) {
+        Intent intent = new Intent(activity, className);
+        intent.addFlags(flags);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(startAnimation, endAnimation);
     }
 
     public void replaceActivity(Activity activity, Class className, Bundle bundle) {
@@ -144,6 +157,15 @@ public class Navigator {
             intent.putExtras(bundle);
         }
         activity.startActivity(intent);
+    }
+
+    public void replaceActivityAnimation(Activity activity, Class className, Bundle bundle, int startAnimation, int endAnimation) {
+        Intent intent = new Intent(activity, className);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        activity.startActivity(intent);
+        activity.overridePendingTransition(startAnimation, endAnimation);
     }
 
     public void replaceActivitForResult(Activity activity, Class className, Bundle bundle, int requestCode) {

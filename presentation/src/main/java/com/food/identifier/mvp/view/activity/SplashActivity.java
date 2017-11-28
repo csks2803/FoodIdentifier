@@ -26,6 +26,6 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
 
     @Override
     public void replace() {
-        mNavigator.replaceActivity(this, IdScannerActivity.class);
+        mNavigator.replaceActivityAnimation(this, IdScannerActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

@@ -3,16 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:background="@drawable/splash_gradient"
+    android:layout_height="@dimen/drawer_header_size">
 
     <ImageView
         android:id="@+id/iv_user_avatar"
-        android:layout_width="@dimen/size_52"
-        android:layout_height="@dimen/size_52"
+        android:layout_width="@dimen/size_56"
+        android:layout_height="@dimen/size_56"
         android:layout_margin="@dimen/margin_small"
+        android:background="@drawable/ic_account"
         android:contentDescription="@null"
-        android:background="@color/black"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
@@ -20,11 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_normal"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/font_size_16"
+        android:text="@string/sign_in"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_size_20"
         android:textStyle="bold"
-        android:text="Taras"
+        app:layout_constraintBottom_toBottomOf="@id/iv_user_avatar"
         app:layout_constraintStart_toEndOf="@+id/iv_user_avatar"
         app:layout_constraintTop_toTopOf="@+id/iv_user_avatar"
         />
+
 </android.support.constraint.ConstraintLayout>

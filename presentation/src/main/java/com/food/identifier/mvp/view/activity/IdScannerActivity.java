@@ -74,6 +74,6 @@ public class IdScannerActivity extends MvpActivity<IdScannerPresenter> implement
 
     @Override
     public void replaceToFoodProduct() {
-        mNavigator.replaceActivity(this, MainActivity.class);
+        mNavigator.replaceActivityAnimation(this, MainActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

@@ -8,5 +8,6 @@ package com.food.identifier.mvp.interfaces.activity;
  */
 public interface ISplashView extends IBaseView {
 
-    void replace();
+    void moveToScanner();
+    void moveToTutorial();
 }

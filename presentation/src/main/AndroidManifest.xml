@@ -32,6 +32,10 @@
             android:theme="@style/NoActionBarTheme"
             />
         <activity
+            android:name="com.food.identifier.mvp.view.activity.TutorialActivity"
+            android:theme="@style/NoActionBarTheme"/>
+
+        <activity
             android:name="com.food.identifier.mvp.view.activity.MainActivity"
             android:theme="@style/NoActionBarTheme"/>
 

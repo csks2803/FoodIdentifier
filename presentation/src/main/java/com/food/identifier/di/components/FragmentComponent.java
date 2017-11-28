@@ -7,6 +7,7 @@ import com.food.identifier.mvp.presenter.fragments.ProductAboutPresenter;
 import com.food.identifier.mvp.presenter.fragments.ProductCharacteristicPresenter;
 import com.food.identifier.mvp.presenter.fragments.ProductFeedbackPresenter;
 import com.food.identifier.mvp.presenter.fragments.ProductPresenter;
+import com.food.identifier.mvp.presenter.fragments.TutorialScreenPresenter;
 import com.food.identifier.mvp.view.fragments.BaseFragment;
 
 import dagger.Subcomponent;
@@ -32,4 +33,6 @@ public interface FragmentComponent {
     void inject(ProductFeedbackPresenter productFeedbackPresenter);
 
     void inject(ProductCharacteristicPresenter productCharacteristicPresenter);
+
+    void inject(TutorialScreenPresenter tutorialScreenPresenter);
 }

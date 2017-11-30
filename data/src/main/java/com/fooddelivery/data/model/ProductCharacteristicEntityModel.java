@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by taras on 11/25/2017.
  */
 
-public class ProductEntityCharacteristicsModel {
+public class ProductCharacteristicEntityModel {
     @SerializedName("title")
     private String title;
     @SerializedName("description")

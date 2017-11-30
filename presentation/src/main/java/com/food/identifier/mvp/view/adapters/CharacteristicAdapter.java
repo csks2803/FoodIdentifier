@@ -8,10 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.food.identifier.R;
 import com.food.identifier.mvp.model.ProductCharacteristicsPresentationModel;
-import com.fooddelivery.data.model.ProductEntityCharacteristicsModel;
 
 import java.util.ArrayList;
 import java.util.List;

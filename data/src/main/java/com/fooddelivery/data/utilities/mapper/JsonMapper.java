@@ -1,16 +1,26 @@
 package com.fooddelivery.data.utilities.mapper;
 
+import android.util.Log;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fooddelivery.data.DataBundleKeys;
+import com.fooddelivery.data.model.ProductEntityModel;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
+import static com.fooddelivery.data.DataBundleKeys.TAG;
 
 /**
  * Class for mapping Json object
@@ -28,22 +38,17 @@ public class JsonMapper {
         return mGson.fromJson(s, c);
     }
 
-    public <T> T fromJson(String s, Type t) {
-        return mGson.fromJson(s, t);
-    }
-
-    public <T> ArrayList<T> fromJsonArray(String s, Class<T> c) {
+    public <T> List<T> fromJsonArray(String json, final Class<T> classType) {
         ObjectMapper objectMapper = new ObjectMapper();
-        // this flag indicates that mapper will be ignore unknown properties
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        ArrayList<T> navigation = null;
+        objectMapper.configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        List<T> list = null;
         try {
-            navigation = objectMapper.readValue(
-                    s, objectMapper.getTypeFactory().constructCollectionType(List.class, c));
+            list = objectMapper.readValue(json, objectMapper.getTypeFactory().constructCollectionType(List.class, classType));
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e(DataBundleKeys.TAG, e.toString());
         }
-        return navigation;
+        return list;
     }
 
     String toJson(Object o) {

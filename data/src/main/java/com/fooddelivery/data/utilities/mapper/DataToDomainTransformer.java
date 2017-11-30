@@ -1,7 +1,7 @@
 package com.fooddelivery.data.utilities.mapper;
 
 import com.fooddelivery.data.model.FeedbackEntityModel;
-import com.fooddelivery.data.model.ProductEntityCharacteristicsModel;
+import com.fooddelivery.data.model.ProductCharacteristicEntityModel;
 import com.fooddelivery.data.model.ProductEntityModel;
 import com.fooddelivery.domain.model.FeedbackDomainModel;
 import com.fooddelivery.domain.model.ProductCharacteristicsDomainModel;
@@ -63,10 +63,10 @@ public class DataToDomainTransformer {
         return feedbackDomainModelList;
     }
 
-    private List<ProductCharacteristicsDomainModel> getProductCharacteristicList(List<ProductEntityCharacteristicsModel> listCharacteristics) {
+    private List<ProductCharacteristicsDomainModel> getProductCharacteristicList(List<ProductCharacteristicEntityModel> listCharacteristics) {
         List<ProductCharacteristicsDomainModel> productCharacteristicsDomainModels = new ArrayList<>();
 
-        for (ProductEntityCharacteristicsModel characteristicEntity : listCharacteristics) {
+        for (ProductCharacteristicEntityModel characteristicEntity : listCharacteristics) {
 
             ProductCharacteristicsDomainModel productCharacteristicsDomainModel = new ProductCharacteristicsDomainModel();
             productCharacteristicsDomainModel.setDescription(characteristicEntity.getDescription());

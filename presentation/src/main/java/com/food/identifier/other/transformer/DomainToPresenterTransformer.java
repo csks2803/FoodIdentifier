@@ -43,6 +43,7 @@ public class DomainToPresenterTransformer {
         }
         presentationModel.setTitle(productDomainModel.getTitle());
         presentationModel.setImageUrls(productDomainModel.getImageUrls());
+        presentationModel.setTradeMark(productDomainModel.getTradeMark());
 
         List<FeedbackPresentationModel> listFeedbackDomain = getListFeedbackDomain(productDomainModel.getFeedback());
         presentationModel.setFeedback(listFeedbackDomain);

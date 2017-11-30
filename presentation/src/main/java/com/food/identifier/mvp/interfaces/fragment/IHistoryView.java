@@ -24,4 +24,6 @@ public interface IHistoryView extends IBaseView {
     void showNoHistory();
 
     void showNoConnectionToast();
+
+    void replaceToProductScreen();
 }

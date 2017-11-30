@@ -13,7 +13,7 @@ import java.util.List;
  * Time: 4:24 PM
  * Company: FoodDelivery
  */
-public interface IMainView extends IBaseView, IHasComponent<ActivityComponent> {
+public interface IProductView extends IBaseView, IHasComponent<ActivityComponent> {
 
     void initToolBar();
 
@@ -28,4 +28,6 @@ public interface IMainView extends IBaseView, IHasComponent<ActivityComponent> {
     void setCollapseToolBarColor(Bitmap resource);
 
     void setProductImageAdapter(List<String> imageUrls);
+
+    void changeToolbarColor(int color);
 }

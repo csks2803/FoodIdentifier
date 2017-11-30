@@ -16,9 +16,8 @@ import com.food.identifier.R;
 import com.food.identifier.mvp.interfaces.fragment.IHistoryView;
 import com.food.identifier.mvp.model.ProductPresentationModel;
 import com.food.identifier.mvp.presenter.fragments.HistoryPresenter;
+import com.food.identifier.mvp.view.activity.ProductActivity;
 import com.food.identifier.mvp.view.adapters.HistoryAdapter;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -103,5 +102,10 @@ public class HistoryFragment extends MvpFragment<HistoryPresenter> implements IH
     @Override
     public void showNoConnectionToast() {
         Toast.makeText(getActivity(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void replaceToProductScreen() {
+        mNavigator.replaceActivityAnimation(getActivity(), ProductActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

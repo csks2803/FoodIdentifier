@@ -18,13 +18,12 @@ import android.support.v7.graphics.Palette.Swatch;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
-import com.food.identifier.mvp.interfaces.activity.IMainView;
+import com.food.identifier.mvp.interfaces.activity.IProductView;
 import com.food.identifier.mvp.model.ProductHolder;
-import com.food.identifier.mvp.presenter.activity.MainActivityPresenter;
+import com.food.identifier.mvp.presenter.activity.ProductPresenter;
 import com.food.identifier.mvp.view.adapters.ProductImageAdapter;
 import com.food.identifier.mvp.view.adapters.ViewPagerProductDescriptionAdapter;
 import com.food.identifier.mvp.view.fragments.HistoryFragment;
@@ -48,7 +47,7 @@ import static android.view.View.VISIBLE;
  * Time: 4:24 PM
  * Company: FoodDelivery
  */
-public class MainActivity extends MvpActivity<MainActivityPresenter> implements IMainView, OnPageChangeListener {
+public class ProductActivity extends MvpActivity<ProductPresenter> implements IProductView, OnPageChangeListener {
 
     public static final int DEFAULT_POSITION = 0;
     @BindView(R.id.nav_view) NavigationView mNavView;
@@ -74,8 +73,8 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
 
     @NonNull
     @Override
-    public MainActivityPresenter createPresenter() {
-        return new MainActivityPresenter(mComponent);
+    public ProductPresenter createPresenter() {
+        return new ProductPresenter(mComponent);
     }
 
     @Override
@@ -114,10 +113,10 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
 
                 switch (item.getItemId()) {
                     case R.id.nav_scan:
-                        mNavigator.replaceActivityAnimation(MainActivity.this, IdScannerActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+                        mNavigator.replaceActivityAnimation(ProductActivity.this, IdScannerActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
                         return true;
                     case R.id.nav_history:
-                        mNavigator.replace(MainActivity.this, HistoryFragment.class, R.id.fl_container, null, false);
+                        mNavigator.replace(ProductActivity.this, HistoryFragment.class, R.id.fl_container, null, false);
                         return true;
                 }
                 return false;
@@ -162,6 +161,11 @@ public class MainActivity extends MvpActivity<MainActivityPresenter> implements 
         mVpProductImage.setOffscreenPageLimit(1);
         mVpProductImage.addOnPageChangeListener(this);
         onPageSelected(0);
+    }
+
+    @Override
+    public void changeToolbarColor(int color) {
+        mToolbarStore.setBackgroundColor(color);
     }
 
     @Override

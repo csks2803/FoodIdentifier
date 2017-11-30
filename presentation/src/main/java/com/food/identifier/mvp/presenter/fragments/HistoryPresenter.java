@@ -4,11 +4,17 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.provider.Settings;
 
+import com.food.identifier.R;
 import com.food.identifier.di.components.FragmentComponent;
 import com.food.identifier.mvp.interfaces.fragment.IHistoryView;
 import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.model.ProductPresentationModel;
 import com.food.identifier.mvp.presenter.BasePresenter;
+import com.food.identifier.mvp.presenter.activity.*;
+import com.food.identifier.mvp.presenter.activity.ProductPresenter;
+import com.food.identifier.mvp.presenter.activity.ProductPresenter.ChangeToolbarColor;
+import com.food.identifier.mvp.view.adapters.HistoryAdapter;
+import com.food.identifier.mvp.view.adapters.HistoryAdapter.HistoryClick;
 import com.food.identifier.other.transformer.DomainToPresenterTransformer;
 import com.food.identifier.other.utility.CloudHelper;
 import com.fooddelivery.domain.executor.PostExecutionThread;
@@ -18,6 +24,9 @@ import com.fooddelivery.domain.interactor.UseCase;
 import com.fooddelivery.domain.interactor.UseCaseGetProductListByUserId;
 import com.fooddelivery.domain.model.ProductDomainModel;
 import com.fooddelivery.domain.net.IFoodIdentifierFactory;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 
@@ -45,12 +54,20 @@ public class HistoryPresenter extends BasePresenter<IHistoryView> {
 
     public HistoryPresenter(FragmentComponent activityComponent) {
         activityComponent.inject(this);
+
         mComposeSubscription = new CompositeSubscription();
     }
 
     @Override
     protected void onViewAttach(Activity context) {
+        EventBus.getDefault().register(this);
+
+        ChangeToolbarColor changeToolbarColor = new ChangeToolbarColor();
+        changeToolbarColor.setColor(R.color.colorPrimary);
+        EventBus.getDefault().post(changeToolbarColor);
+
         mView.showProgress();
+        mView.configureRecycleView();
 
         if (CloudHelper.isOnline(context)) {
             retrieveProductHistory(context);
@@ -70,12 +87,19 @@ public class HistoryPresenter extends BasePresenter<IHistoryView> {
 
     @SuppressLint("HardwareIds")
     private String getUserId(Activity context) {
-        return  Settings.Secure.getString(context.getContentResolver(), ANDROID_ID);
+        return Settings.Secure.getString(context.getContentResolver(), ANDROID_ID);
     }
 
     @Override
     protected void onViewDetach() {
+        EventBus.getDefault().unregister(this);
         mComposeSubscription.unsubscribe();
+    }
+
+    @Subscribe
+    public void historyClick(HistoryClick historyClick) {
+        mProductHolder.setProductHolder(historyClick.getProductPresentationModel());
+        mView.replaceToProductScreen();
     }
 
     private class UseCaseGetProductListSubscriber extends DefaultSubscriber<List<ProductDomainModel>> {

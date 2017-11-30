@@ -38,6 +38,7 @@ public class DataToDomainTransformer {
         }
 
         productDomain.setTitle(productEntityModel.getTitle());
+        productDomain.setTradeMark(productEntityModel.getTradeMark());
         productDomain.setImageUrls(productEntityModel.getImageUrls());
 
         List<FeedbackDomainModel> listFeedbackDomain = getListFeedbackDomain(productEntityModel.getFeedback());

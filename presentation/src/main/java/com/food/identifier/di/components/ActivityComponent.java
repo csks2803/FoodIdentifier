@@ -7,9 +7,9 @@ import com.food.identifier.mvp.presenter.activity.SplashPresenter;
 import com.food.identifier.mvp.presenter.activity.TutorialPresenter;
 import com.food.identifier.mvp.presenter.fragments.HistoryPresenter;
 import com.food.identifier.mvp.presenter.activity.IdScannerPresenter;
-import com.food.identifier.mvp.presenter.activity.MainActivityPresenter;
+import com.food.identifier.mvp.presenter.activity.ProductPresenter;
 import com.food.identifier.mvp.view.activity.BaseActivity;
-import com.food.identifier.mvp.view.activity.MainActivity;
+import com.food.identifier.mvp.view.activity.ProductActivity;
 
 import dagger.Subcomponent;
 
@@ -29,11 +29,11 @@ public interface ActivityComponent {
 
     void inject(BaseActivity tBaseActivity);
 
-    void inject(MainActivity mainActivity);
+    void inject(ProductActivity mainActivity);
 
     ////////PRESENTER INJECTION////////////////////
 
-    void inject(MainActivityPresenter storeListPresenter);
+    void inject(ProductPresenter storeListPresenter);
 
     void inject(IdScannerPresenter idScannerPresenter);
 

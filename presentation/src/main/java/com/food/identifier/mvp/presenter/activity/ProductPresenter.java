@@ -8,9 +8,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 import com.food.identifier.di.components.ActivityComponent;
-import com.food.identifier.mvp.interfaces.activity.IMainView;
+import com.food.identifier.mvp.interfaces.activity.IProductView;
 import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.BasePresenter;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import javax.inject.Inject;
 
@@ -21,15 +24,16 @@ import javax.inject.Inject;
  * Company: FoodIdentifier
  */
 
-public class MainActivityPresenter extends BasePresenter<IMainView> {
+public class ProductPresenter extends BasePresenter<IProductView> {
     @Inject ProductHolder mProductHolder;
 
-    public MainActivityPresenter(ActivityComponent activityComponent) {
+    public ProductPresenter(ActivityComponent activityComponent) {
         activityComponent.inject(this);
     }
 
     @Override
     protected void onViewAttach(Activity activity) {
+        EventBus.getDefault().register(this);
         mView.initToolBar();
         mView.initActionBar();
         mView.setupTabLayout();
@@ -40,7 +44,7 @@ public class MainActivityPresenter extends BasePresenter<IMainView> {
 
     @Override
     protected void onViewDetach() {
-
+        EventBus.getDefault().unregister(this);
     }
 
     public void changeCollapseColor(Context context, int position) {
@@ -51,5 +55,24 @@ public class MainActivityPresenter extends BasePresenter<IMainView> {
                 mView.setCollapseToolBarColor(resource);
             }
         });
+    }
+
+    @Subscribe
+    public void changeToolbarColor(ChangeToolbarColor toolbarColor)
+    {
+        mView.changeToolbarColor(toolbarColor.getColor());
+    }
+
+    public static class ChangeToolbarColor
+    {
+        private int color;
+
+        public int getColor() {
+            return color;
+        }
+
+        public void setColor(int color) {
+            this.color = color;
+        }
     }
 }

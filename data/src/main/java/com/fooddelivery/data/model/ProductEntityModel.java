@@ -18,7 +18,7 @@ public class ProductEntityModel {
     @SerializedName("about")
     private String about;
     @SerializedName("characteristics")
-    private List<ProductEntityCharacteristicsModel> listCharacteristics;
+    private List<ProductEntityCharacteristicsModel> characteristics;
     @SerializedName("imageUrls")
     private List<String> imageUrls;
     @SerializedName("feedback")
@@ -56,12 +56,12 @@ public class ProductEntityModel {
         this.id = id;
     }
 
-    public List<ProductEntityCharacteristicsModel> getListCharacteristics() {
-        return listCharacteristics;
+    public List<ProductEntityCharacteristicsModel> getСharacteristics() {
+        return characteristics;
     }
 
-    public void setListCharacteristics(List<ProductEntityCharacteristicsModel> listCharacteristics) {
-        this.listCharacteristics = listCharacteristics;
+    public void setСharacteristics(List<ProductEntityCharacteristicsModel> сharacteristics) {
+        this.characteristics = сharacteristics;
     }
 
     public List<FeedbackEntityModel> getFeedback() {

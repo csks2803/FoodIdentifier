@@ -8,7 +8,10 @@ import com.fooddelivery.data.utilities.mapper.DataToDomainTransformer;
 import com.fooddelivery.data.utilities.mapper.JsonMapper;
 import com.fooddelivery.domain.model.ProductDomainModel;
 
+import java.util.List;
+
 import rx.Observable;
+import rx.Observable.OnSubscribe;
 import rx.Subscriber;
 
 /**
@@ -28,7 +31,7 @@ class FoodDeliveryFactoryImpl {
     }
 
     Observable<ProductDomainModel> getProduct(final String id) {
-        return Observable.create(new Observable.OnSubscribe<ProductDomainModel>() {
+        return Observable.create(new OnSubscribe<ProductDomainModel>() {
             @Override
             public void call(Subscriber<? super ProductDomainModel> subscriber) {
 //                final Call<ProductEntityModel> request = mApi.getService().getProductById(id);
@@ -47,10 +50,38 @@ class FoodDeliveryFactoryImpl {
                 String json = Utility.loadJSONFromAsset(mContext, "product.json");
 
                 ProductEntityModel listStoreEntity = new JsonMapper().fromJson(json, ProductEntityModel.class);
-                ProductDomainModel storeDomainModelList = mTransformer.transformStoreModel(listStoreEntity);
-                subscriber.onNext(storeDomainModelList);
+                ProductDomainModel product = mTransformer.transformProductModel(listStoreEntity);
+                subscriber.onNext(product);
+                subscriber.onCompleted();
             }
         });
     }
 
+    public Observable<List<ProductDomainModel>> getProductListByUserId(String id) {
+        return Observable.create(new OnSubscribe<List<ProductDomainModel>>() {
+            @Override
+            public void call(Subscriber<? super List<ProductDomainModel>> subscriber) {
+//                final Call<List<ProductEntityModel>> request = mApi.getService().getProductById(id);
+//                request.enqueue(new Callback<List<ProductEntityModel>>() {
+//                    @Override
+//                    public void onResponse(Call<List<ProductEntityModel>> call, Response<List<ProductEntityModel>> response) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<ProductEntityModel>> call, Throwable t) {
+//
+//                    }
+//                });
+
+
+                String json = Utility.loadJSONFromAsset(mContext, "product-list.json");
+
+                List<ProductEntityModel> listStoreEntity = new JsonMapper().fromJsonArray(json, ProductEntityModel.class);
+                List<ProductDomainModel> productList = mTransformer.transformProductModelList(listStoreEntity);
+                subscriber.onNext(productList);
+                subscriber.onCompleted();
+            }
+        });
+    }
 }

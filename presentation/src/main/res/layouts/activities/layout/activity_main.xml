@@ -37,6 +37,7 @@
                         android:id="@+id/vp_product_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
                         />
 
                     <ImageView
@@ -99,7 +100,9 @@
     <FrameLayout
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="?android:attr/actionBarSize"
+        />
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
@@ -111,8 +114,6 @@
         app:itemBackground="@drawable/ripple_green"
         app:itemTextColor="@color/colorPrimary"
         app:menu="@menu/drawer_view"
-        app:theme="@style/NavigationDrawerItemStyle">
-
-    </android.support.design.widget.NavigationView>
+        app:theme="@style/NavigationDrawerItemStyle"/>
 
 </android.support.v4.widget.DrawerLayout>

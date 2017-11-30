@@ -16,14 +16,27 @@ import java.util.List;
 
 public class DataToDomainTransformer {
 
-    public ProductDomainModel transformStoreModel(ProductEntityModel productEntityModel) {
+    public List<ProductDomainModel> transformProductModelList(List<ProductEntityModel> listEntity) {
+        List<ProductDomainModel> listDomain = new ArrayList<>();
+
+        for (ProductEntityModel productEntityModel : listEntity) {
+            ProductDomainModel productDomainModel = transformProductModel(productEntityModel);
+            listDomain.add(productDomainModel);
+        }
+        return listDomain;
+    }
+
+    public ProductDomainModel transformProductModel(ProductEntityModel productEntityModel) {
         ProductDomainModel productDomain = new ProductDomainModel();
 
         productDomain.setId(productEntityModel.getId());
         productDomain.setAbout(productEntityModel.getAbout());
 
-        List<ProductCharacteristicsDomainModel> productCharacteristicList = getProductCharacteristicList(productEntityModel.getListCharacteristics());
-        productDomain.setListCharacteristics(productCharacteristicList);
+        if (productEntityModel.getСharacteristics() != null) {
+            List<ProductCharacteristicsDomainModel> productCharacteristicList = getProductCharacteristicList(productEntityModel.getСharacteristics());
+            productDomain.setListCharacteristics(productCharacteristicList);
+        }
+
         productDomain.setTitle(productEntityModel.getTitle());
         productDomain.setImageUrls(productEntityModel.getImageUrls());
 

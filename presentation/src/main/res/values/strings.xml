@@ -18,5 +18,8 @@
     <string name="identify_product">Identify product</string>
     <string name="products_history">Product History</string>
     <string name="sign_in">Sign In</string>
+    <string name="no_history">No History</string>
+
+    <string name="no_internet_connection">No Internet connection</string>
 
 </resources>

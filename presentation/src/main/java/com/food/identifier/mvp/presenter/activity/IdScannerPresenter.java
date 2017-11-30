@@ -71,7 +71,7 @@ public class IdScannerPresenter extends BasePresenter<IIdScannerView> {
                 @Override
                 public void call(Subscriber<? super ProductPresentationModel> subscriber) {
                     DomainToPresenterTransformer transformer = new DomainToPresenterTransformer();
-                    ProductPresentationModel productPresentation = transformer.transfomProductModel(foodPackageDomainModel);
+                    ProductPresentationModel productPresentation = transformer.transformProductModel(foodPackageDomainModel);
 
                     subscriber.onNext(productPresentation);
                 }

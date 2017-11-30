@@ -3,25 +3,40 @@ package com.food.identifier.mvp.view.fragments;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.food.identifier.R;
 import com.food.identifier.mvp.interfaces.fragment.IHistoryView;
+import com.food.identifier.mvp.model.ProductPresentationModel;
 import com.food.identifier.mvp.presenter.fragments.HistoryPresenter;
+import com.food.identifier.mvp.view.adapters.HistoryAdapter;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 /**
  * Created by taras on 11/23/2017.
  */
 
 public class HistoryFragment extends MvpFragment<HistoryPresenter> implements IHistoryView {
-    @BindView(R.id.rv_history) RecyclerView mRvHistoryFragment;
+    @BindView(R.id.rv_history) RecyclerView mRvHistory;
+    @BindView(R.id.pr_history_loading) ProgressBar mProgressHistory;
+    @BindView(R.id.tv_no_history) TextView mTvNoHistory;
 
     private Unbinder mUnBinder;
 
@@ -53,7 +68,40 @@ public class HistoryFragment extends MvpFragment<HistoryPresenter> implements IH
     }
 
     @Override
-    public void setAdapter() {
+    public void configureRecycleView() {
+        mRvHistory.setHasFixedSize(true);
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        mRvHistory.setLayoutManager(layoutManager);
+    }
 
+    @Override
+    public void setAdapter(List<ProductPresentationModel> productPresentationList) {
+        HistoryAdapter adapter = new HistoryAdapter(getActivity(), productPresentationList);
+        mRvHistory.setAdapter(adapter);
+    }
+
+    @Override
+    public void hideProgress() {
+        mProgressHistory.setVisibility(GONE);
+    }
+
+    @Override
+    public void showProgress() {
+        mProgressHistory.setVisibility(VISIBLE);
+    }
+
+    @Override
+    public void hideNoHistory() {
+        mTvNoHistory.setVisibility(GONE);
+    }
+
+    @Override
+    public void showNoHistory() {
+        mTvNoHistory.setVisibility(VISIBLE);
+    }
+
+    @Override
+    public void showNoConnectionToast() {
+        Toast.makeText(getActivity(), R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
     }
 }

@@ -6,10 +6,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.food.identifier.R;
 import com.food.identifier.mvp.interfaces.activity.IIdScannerView;
 import com.food.identifier.mvp.presenter.activity.IdScannerPresenter;
+import com.food.identifier.other.utility.CloudHelper;
 import com.google.zxing.ResultPoint;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -55,7 +57,11 @@ public class IdScannerActivity extends MvpActivity<IdScannerPresenter> implement
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null && result.getContents() != null && !result.getContents().equals(lastText)) {
             lastText = result.getContents();
-            mPresenter.sendScannedResult(result.getContents());
+            if (CloudHelper.isOnline(this)) {
+                mPresenter.sendScannedResult(result.getContents());
+            } else {
+                Toast.makeText(this, R.string.no_internet_connection, Toast.LENGTH_SHORT).show();
+            }
         } else {
             // This is important, otherwise the result will not be passed to the fragment
             super.onActivityResult(requestCode, resultCode, data);

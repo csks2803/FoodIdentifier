@@ -2,6 +2,8 @@ package com.fooddelivery.domain.net;
 
 import com.fooddelivery.domain.model.ProductDomainModel;
 
+import java.util.List;
+
 import rx.Observable;
 
 /**
@@ -10,4 +12,6 @@ import rx.Observable;
 
 public interface IFoodIdentifierFactory {
     Observable<ProductDomainModel> getProductById(String id);
+
+    Observable<List<ProductDomainModel>> getProductListByUserId(String id);
 }

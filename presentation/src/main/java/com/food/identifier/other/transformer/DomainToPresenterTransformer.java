@@ -20,14 +20,27 @@ import java.util.List;
 
 public class DomainToPresenterTransformer {
 
-    public ProductPresentationModel transfomProductModel(ProductDomainModel productDomainModel) {
+    public List<ProductPresentationModel> transformProductModelList(List<ProductDomainModel> listEntity) {
+        List<ProductPresentationModel> listPresentation = new ArrayList<>();
+
+        for (ProductDomainModel productDomainModel : listEntity) {
+            ProductPresentationModel productPresentationModel = transformProductModel(productDomainModel);
+            listPresentation.add(productPresentationModel);
+        }
+        return listPresentation;
+    }
+
+    public ProductPresentationModel transformProductModel(ProductDomainModel productDomainModel) {
         ProductPresentationModel presentationModel = new ProductPresentationModel();
 
         presentationModel.setId(productDomainModel.getId());
         presentationModel.setAbout(productDomainModel.getAbout());
 
-        List<ProductCharacteristicsPresentationModel> productCharacteristicList = getProductCharacteristicList(productDomainModel.getListCharacteristics());
-        presentationModel.setListCharacteristics(productCharacteristicList);
+        if (productDomainModel.getListCharacteristics() != null) {
+            List<ProductCharacteristicsPresentationModel> productCharacteristicList = getProductCharacteristicList(productDomainModel.getListCharacteristics());
+
+            presentationModel.setListCharacteristics(productCharacteristicList);
+        }
         presentationModel.setTitle(productDomainModel.getTitle());
         presentationModel.setImageUrls(productDomainModel.getImageUrls());
 

@@ -1,7 +1,7 @@
 package com.fooddelivery.data.utilities.mapper;
 
+import com.fooddelivery.data.model.CharacteristicEntityModel;
 import com.fooddelivery.data.model.FeedbackEntityModel;
-import com.fooddelivery.data.model.ProductCharacteristicEntityModel;
 import com.fooddelivery.data.model.ProductEntityModel;
 import com.fooddelivery.domain.model.FeedbackDomainModel;
 import com.fooddelivery.domain.model.ProductCharacteristicsDomainModel;
@@ -32,8 +32,8 @@ public class DataToDomainTransformer {
         productDomain.setId(productEntityModel.getId());
         productDomain.setAbout(productEntityModel.getAbout());
 
-        if (productEntityModel.getСharacteristics() != null) {
-            List<ProductCharacteristicsDomainModel> productCharacteristicList = getProductCharacteristicList(productEntityModel.getСharacteristics());
+        if (productEntityModel.getСharacteristic() != null) {
+            List<ProductCharacteristicsDomainModel> productCharacteristicList = getProductCharacteristicList(productEntityModel.getСharacteristic());
             productDomain.setListCharacteristics(productCharacteristicList);
         }
 
@@ -63,10 +63,10 @@ public class DataToDomainTransformer {
         return feedbackDomainModelList;
     }
 
-    private List<ProductCharacteristicsDomainModel> getProductCharacteristicList(List<ProductCharacteristicEntityModel> listCharacteristics) {
+    private List<ProductCharacteristicsDomainModel> getProductCharacteristicList(List<CharacteristicEntityModel> listCharacteristics) {
         List<ProductCharacteristicsDomainModel> productCharacteristicsDomainModels = new ArrayList<>();
 
-        for (ProductCharacteristicEntityModel characteristicEntity : listCharacteristics) {
+        for (CharacteristicEntityModel characteristicEntity : listCharacteristics) {
 
             ProductCharacteristicsDomainModel productCharacteristicsDomainModel = new ProductCharacteristicsDomainModel();
             productCharacteristicsDomainModel.setDescription(characteristicEntity.getDescription());

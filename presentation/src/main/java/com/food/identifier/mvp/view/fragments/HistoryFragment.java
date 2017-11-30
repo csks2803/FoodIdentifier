@@ -106,6 +106,8 @@ public class HistoryFragment extends MvpFragment<HistoryPresenter> implements IH
 
     @Override
     public void replaceToProductScreen() {
-        mNavigator.replaceActivityAnimation(getActivity(), ProductActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+        getActivity().finish();
+        startActivity(getActivity().getIntent());
+        //   mNavigator.replaceActivityAnimation(getActivity(), ProductActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

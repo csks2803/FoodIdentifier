@@ -8,6 +8,7 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.NavigationView.OnNavigationItemSelectedListener;
 import android.support.design.widget.TabLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
@@ -165,7 +166,7 @@ public class ProductActivity extends MvpActivity<ProductPresenter> implements IP
 
     @Override
     public void changeToolbarColor(int color) {
-        mToolbarStore.setBackgroundColor(color);
+        mToolbarStore.setBackgroundColor(ContextCompat.getColor(this, color));
     }
 
     @Override

@@ -10,19 +10,19 @@ import java.util.List;
 
 public class ProductEntityModel {
     @SerializedName("id")
-    private int id;
+    public int id;
     @SerializedName("title")
-    private String title;
+    public String title;
     @SerializedName("tradeMark")
     private String tradeMark;
     @SerializedName("about")
-    private String about;
+    public String about;
     @SerializedName("imageUrls")
     private List<String> imageUrls;
-    @SerializedName("characteristic")
-    private List<CharacteristicEntityModel> characteristic;
     @SerializedName("feedback")
-    private List<FeedbackEntityModel> feedback;
+    public List<FeedbackEntityModel> feedback;
+    @SerializedName("characteristics")
+    public List<CharacteristicEntityModel> characteristics;
 
     public String getTitle() {
         return title;
@@ -36,16 +36,8 @@ public class ProductEntityModel {
         return about;
     }
 
-    public void setAbout(String about) {
-        this.about = about;
-    }
-
     public List<String> getImageUrls() {
         return imageUrls;
-    }
-
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
     }
 
     public int getId() {
@@ -57,11 +49,7 @@ public class ProductEntityModel {
     }
 
     public List<CharacteristicEntityModel> getСharacteristic() {
-        return characteristic;
-    }
-
-    public void setСharacteristics(List<CharacteristicEntityModel> сharacteristics) {
-        this.characteristic = сharacteristics;
+        return characteristics;
     }
 
     public List<FeedbackEntityModel> getFeedback() {
@@ -74,10 +62,6 @@ public class ProductEntityModel {
 
     public String getTradeMark() {
         return tradeMark;
-    }
-
-    public void setTradeMark(String tradeMark) {
-        this.tradeMark = tradeMark;
     }
 
 }

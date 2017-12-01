@@ -11,7 +11,7 @@ import static junit.framework.Assert.assertEquals;
 //import static org.junit.Assert.*;
 
 /**
- * Instrumentation test, which will execute on an Android device.
+ * Instrumentation characteristics, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
@@ -19,9 +19,9 @@ import static junit.framework.Assert.assertEquals;
 public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() throws Exception {
-        // Context of the app under test.
+        // Context of the app under characteristics.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.fooddelivery.data.test", appContext.getPackageName());
+        assertEquals("com.fooddelivery.data.characteristics", appContext.getPackageName());
     }
 }

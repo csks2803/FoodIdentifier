@@ -14,13 +14,13 @@ import com.food.identifier.mvp.presenter.activity.ProductPresenter.ChangeToolbar
 import com.food.identifier.mvp.view.adapters.HistoryAdapter.HistoryClick;
 import com.food.identifier.other.transformer.DomainToPresenterTransformer;
 import com.food.identifier.other.utility.CloudHelper;
-import com.fooddelivery.domain.executor.PostExecutionThread;
-import com.fooddelivery.domain.executor.ThreadExecutor;
-import com.fooddelivery.domain.interactor.DefaultSubscriber;
-import com.fooddelivery.domain.interactor.UseCase;
-import com.fooddelivery.domain.interactor.UseCaseGetProductListByUserId;
-import com.fooddelivery.domain.model.ProductDomainModel;
-import com.fooddelivery.domain.net.IFoodIdentifierFactory;
+import com.foodidentifier.domain.executor.PostExecutionThread;
+import com.foodidentifier.domain.executor.ThreadExecutor;
+import com.foodidentifier.domain.interactor.DefaultSubscriber;
+import com.foodidentifier.domain.interactor.UseCase;
+import com.foodidentifier.domain.interactor.UseCaseGetProductListByUserId;
+import com.foodidentifier.domain.model.ProductDomainModel;
+import com.foodidentifier.domain.net.IFoodIdentifierFactory;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;

@@ -5,12 +5,11 @@ import android.content.Context;
 import com.food.identifier.UIThread;
 import com.food.identifier.application.FoodIdentifierApplication;
 import com.food.identifier.mvp.model.ProductHolder;
-import com.food.identifier.mvp.model.ProductPresentationModel;
-import com.fooddelivery.data.executor.JobExecutor;
-import com.fooddelivery.data.net.FoodIdentifierFactory;
-import com.fooddelivery.domain.executor.PostExecutionThread;
-import com.fooddelivery.domain.executor.ThreadExecutor;
-import com.fooddelivery.domain.net.IFoodIdentifierFactory;
+import com.foodidentifier.data.executor.JobExecutor;
+import com.foodidentifier.data.net.FoodIdentifierFactory;
+import com.foodidentifier.domain.executor.PostExecutionThread;
+import com.foodidentifier.domain.executor.ThreadExecutor;
+import com.foodidentifier.domain.net.IFoodIdentifierFactory;
 
 import javax.inject.Singleton;
 

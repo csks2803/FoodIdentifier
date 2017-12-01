@@ -8,13 +8,13 @@ import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.model.ProductPresentationModel;
 import com.food.identifier.mvp.presenter.BasePresenter;
 import com.food.identifier.other.transformer.DomainToPresenterTransformer;
-import com.fooddelivery.domain.executor.PostExecutionThread;
-import com.fooddelivery.domain.executor.ThreadExecutor;
-import com.fooddelivery.domain.interactor.DefaultSubscriber;
-import com.fooddelivery.domain.interactor.UseCase;
-import com.fooddelivery.domain.interactor.UseCaseGetProductById;
-import com.fooddelivery.domain.model.ProductDomainModel;
-import com.fooddelivery.domain.net.IFoodIdentifierFactory;
+import com.foodidentifier.domain.executor.PostExecutionThread;
+import com.foodidentifier.domain.executor.ThreadExecutor;
+import com.foodidentifier.domain.interactor.DefaultSubscriber;
+import com.foodidentifier.domain.interactor.UseCase;
+import com.foodidentifier.domain.interactor.UseCaseGetProductById;
+import com.foodidentifier.domain.model.ProductDomainModel;
+import com.foodidentifier.domain.net.IFoodIdentifierFactory;
 
 import javax.inject.Inject;
 

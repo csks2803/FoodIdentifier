@@ -1,4 +1,4 @@
-package com.fooddelivery.data;
+package com.foodidentifier.data;
 
 import org.testng.annotations.Test;
 

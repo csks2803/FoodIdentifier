@@ -3,9 +3,9 @@ package com.food.identifier.other.transformer;
 import com.food.identifier.mvp.model.FeedbackPresentationModel;
 import com.food.identifier.mvp.model.ProductCharacteristicsPresentationModel;
 import com.food.identifier.mvp.model.ProductPresentationModel;
-import com.fooddelivery.domain.model.FeedbackDomainModel;
-import com.fooddelivery.domain.model.ProductCharacteristicsDomainModel;
-import com.fooddelivery.domain.model.ProductDomainModel;
+import com.foodidentifier.domain.model.FeedbackDomainModel;
+import com.foodidentifier.domain.model.ProductCharacteristicsDomainModel;
+import com.foodidentifier.domain.model.ProductDomainModel;
 
 import java.util.ArrayList;
 import java.util.List;

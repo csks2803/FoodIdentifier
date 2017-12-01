@@ -1,4 +1,4 @@
-package com.fooddelivery.data;
+package com.foodidentifier.data;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under characteristics.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.fooddelivery.data.characteristics", appContext.getPackageName());
+        assertEquals("com.foodidentifier.data.characteristics", appContext.getPackageName());
     }
 }

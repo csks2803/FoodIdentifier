@@ -13,28 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.food.identifier;
-
-import com.foodidentifier.domain.executor.PostExecutionThread;
-
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import rx.Scheduler;
-import rx.android.schedulers.AndroidSchedulers;
+package com.foodidentifier.data.exceptions;
 
 /**
- * MainThread (UI Thread) implementation based on a {@link Scheduler}
- * which will execute actions on the Android UI thread
+ * Exception throw by the application when a there is a network connection exception.
  */
-@Singleton
-public class UIThread implements PostExecutionThread {
+public class NetworkConnectionException extends Exception {
 
-  @Inject
-  public UIThread() {}
+  public NetworkConnectionException() {
+    super();
+  }
 
-  @Override
-  public Scheduler getScheduler() {
-    return AndroidSchedulers.mainThread();
+  public NetworkConnectionException(final String message) {
+    super(message);
+  }
+
+  public NetworkConnectionException(final String message, final Throwable cause) {
+    super(message, cause);
+  }
+
+  public NetworkConnectionException(final Throwable cause) {
+    super(cause);
   }
 }

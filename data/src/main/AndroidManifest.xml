@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 
-          package="com.fooddelivery.data"
+          package="com.foodidentifier.data"
 >
 
     <application android:allowBackup="true"

@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.food.identifier.R;
 import com.food.identifier.mvp.model.ProductPresentationModel;
-import com.fooddelivery.domain.model.ProductDomainModel;
 
 import org.greenrobot.eventbus.EventBus;
 

@@ -85,6 +85,7 @@ dependencies {
     compile presentationDependencies.circlePageIndicator
     compile presentationDependencies.gsmPlayService
     compile presentationDependencies.zxidEmbedded
+    compile presentationDependencies.imageZoom
 //    compile presentationDependencies.observableScrollView
 
     compile presentationDependencies.glide

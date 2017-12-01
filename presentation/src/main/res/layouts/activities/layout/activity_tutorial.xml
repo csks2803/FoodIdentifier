@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_normal"
         android:layout_marginEnd="@dimen/margin_normal"
-        android:background="@drawable/ic_arrow_right_white"
+        android:background="@drawable/ic_arrow_right"
         android:contentDescription="@null"
         android:padding="@dimen/padding_huge"
         android:textColor="@color/white"

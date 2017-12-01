@@ -40,6 +40,7 @@ ext {
     googleGsmVersion = '11.6.0'
     zxingEmbeddedVersion = '3.5.0'
     ormliteVersion = '5.0'
+    zoomImageVersion = '3.6.0'
 
 /////////////////////// TESTING ////////////////////////////////
     robolectricVersion = '3.0'
@@ -82,6 +83,7 @@ ext {
             observableScrollView : "com.github.ksoichiro:android-observablescrollview:${observableScrolView}",
             gsmPlayService       : "com.google.android.gms:play-services:${googleGsmVersion}",
             zxidEmbedded         : "com.journeyapps:zxing-android-embedded:${zxingEmbeddedVersion}",
+            imageZoom           : "com.davemorrissey.labs:subsampling-scale-image-view:${zoomImageVersion}"
     ]
 
     presentationTestDependencies = [

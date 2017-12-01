@@ -46,7 +46,8 @@
                         android:layout_height="@dimen/size_52"
                         android:layout_gravity="center_vertical|start"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_arrow_left_white"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@drawable/ic_arrow_left"
                         android:visibility="gone"/>
 
                     <ImageView
@@ -54,8 +55,10 @@
                         android:layout_width="@dimen/size_52"
                         android:layout_height="@dimen/size_52"
                         android:layout_gravity="center_vertical|end"
+                        android:background="@drawable/ripple_amber"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_arrow_right_white"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:src="@drawable/ic_arrow_right"
                         android:visibility="gone"/>
                 </FrameLayout>
 
@@ -67,11 +70,7 @@
                     android:background="@android:color/black"
                     />
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar_header"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                <include layout="@layout/toolbar_main"/>
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tab_layout"
@@ -80,6 +79,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_gravity="bottom"
                     android:layout_marginTop="30dp"
+                    android:background="@drawable/ripple_amber"
                     app:tabIndicatorColor="@color/amber"
                     app:tabSelectedTextColor="@android:color/white"
                     app:tabTextColor="@color/white"/>
@@ -101,7 +101,7 @@
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?android:attr/actionBarSize"
+        android:layout_marginTop="@dimen/size_52"
         />
 
     <android.support.design.widget.NavigationView

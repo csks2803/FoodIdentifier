@@ -1,14 +1,11 @@
 package com.food.identifier.mvp.view.activity;
 
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
 import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
@@ -16,12 +13,10 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
-import com.davemorrissey.labs.subscaleview.ImageSource;
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.food.identifier.R;
-import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IImageView;
 import com.food.identifier.mvp.presenter.activity.ImagePresenter;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,8 +31,8 @@ import static android.view.Window.FEATURE_ACTION_BAR_OVERLAY;
 
 public class ImageDetailsActivity extends MvpActivity<ImagePresenter> implements IImageView {
 
-    @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.image) SubsamplingScaleImageView mImage;
+    @BindView(R.id.toolbar_header) Toolbar mToolbar;
+    @BindView(R.id.image) PhotoView mImage;
     @BindView(R.id.progress_bar) ProgressBar mProgressBar;
     public static final String EMPTY_TITLE = "";
 
@@ -61,24 +56,24 @@ public class ImageDetailsActivity extends MvpActivity<ImagePresenter> implements
 
     @Override
     public void loadImage(String url) {
-//        Glide.with(this).load(url).listener(new RequestListener<Drawable>() {
-//            @Override
-//            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-//                hideProgress();
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-//                hideProgress();
-//                return false;
-//            }
-//        }).into(mImage);
+        Glide.with(this).load(url).listener(new RequestListener<Drawable>() {
+            @Override
+            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                hideProgress();
+                return false;
+            }
+
+            @Override
+            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                hideProgress();
+                return false;
+            }
+        }).into(mImage);
     }
 
     @Override
     public void configureToolbar() {
-        mToolbar.setNavigationIcon(android.R.drawable.ic_menu_close_clear_cancel);
+        mToolbar.setNavigationIcon(R.drawable.ic_close_white);
         mToolbar.setTitle(EMPTY_TITLE);
         setSupportActionBar(mToolbar);
 
@@ -86,11 +81,6 @@ public class ImageDetailsActivity extends MvpActivity<ImagePresenter> implements
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-    }
-
-    @Override
-    public void setImageScaleSize(float size) {
-        mImage.setMaxScale(size);
     }
 
     @Override

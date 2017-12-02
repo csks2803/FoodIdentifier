@@ -23,7 +23,6 @@ public class ImagePresenter extends BasePresenter<IImageView> {
     @Override
     protected void onViewAttach(Activity context) {
         mView.configureToolbar();
-        mView.setImageScaleSize(6f);
         Intent intent = context.getIntent();
         String url = intent.getStringExtra(IMAGE_URL);
 

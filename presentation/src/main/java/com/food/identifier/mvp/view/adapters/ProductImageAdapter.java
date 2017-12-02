@@ -71,7 +71,6 @@ public class ProductImageAdapter extends PagerAdapter implements OnClickListener
     }
 
     private void loadGlideImage(String url, ImageView ivProduct, final ProgressBar prLoadImage) {
-        ivProduct.setTag(url);
         Glide.with(mContext).load(url).listener(new RequestListener<Drawable>() {
             @Override
             public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -96,25 +95,12 @@ public class ProductImageAdapter extends PagerAdapter implements OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.iv_product:
-                String url = (String) view.getTag();
-
                 ProductImageClick productImageClick = new ProductImageClick();
-                productImageClick.setUrl(url);
-
                 EventBus.getDefault().post(productImageClick);
                 break;
         }
     }
 
     public static class ProductImageClick {
-        private String url;
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
     }
 }

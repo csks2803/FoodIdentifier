@@ -1,6 +1,7 @@
 package com.food.identifier.mvp.view.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -40,10 +41,10 @@ public class IdScannerActivity extends MvpActivity<IdScannerPresenter> implement
         setContentView(R.layout.activity_code_scanner);
         ButterKnife.bind(this);
 
-//        IntentIntegrator integrator = new IntentIntegrator(this);
-//        integrator.initiateScan();
-        mPresenter.sendScannedResult("");
-    }
+        IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.createScanIntent().setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        integrator.initiateScan();
+     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

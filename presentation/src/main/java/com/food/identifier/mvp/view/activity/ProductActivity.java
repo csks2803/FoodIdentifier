@@ -41,6 +41,7 @@ import static android.view.View.FOCUS_LEFT;
 import static android.view.View.FOCUS_RIGHT;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.food.identifier.mvp.presenter.activity.ImagePresenter.IMAGE_URL;
 
 /**
  * Created by Taras Matolinets
@@ -68,7 +69,7 @@ public class ProductActivity extends MvpActivity<ProductPresenter> implements IP
 
     @Override
     protected void onInit(@Nullable Bundle bundle) {
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_product);
         ButterKnife.bind(this);
     }
 
@@ -167,6 +168,17 @@ public class ProductActivity extends MvpActivity<ProductPresenter> implements IP
     @Override
     public void changeToolbarColor(int color) {
         mToolbarStore.setBackgroundColor(ContextCompat.getColor(this, color));
+    }
+
+    @Override
+    public void imageClick(List<String> imageUls) {
+        int item = mVpProductImage.getCurrentItem();
+        String imageUrl = imageUls.get(item);
+
+        Bundle bundle = new Bundle();
+        bundle.putString(IMAGE_URL, imageUrl);
+
+        mNavigator.replaceActivityAnimation(this, ImageDetailsActivity.class, bundle, android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override

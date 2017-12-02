@@ -11,9 +11,13 @@ import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IProductView;
 import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.BasePresenter;
+import com.food.identifier.mvp.view.adapters.ProductImageAdapter;
+import com.food.identifier.mvp.view.adapters.ProductImageAdapter.ProductImageClick;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -58,13 +62,17 @@ public class ProductPresenter extends BasePresenter<IProductView> {
     }
 
     @Subscribe
-    public void changeToolbarColor(ChangeToolbarColor toolbarColor)
-    {
+    public void changeToolbarColor(ChangeToolbarColor toolbarColor) {
         mView.changeToolbarColor(toolbarColor.getColor());
     }
 
-    public static class ChangeToolbarColor
-    {
+    @Subscribe
+    public void imageClick(ProductImageClick imageClick) {
+        List<String> imageUls = mProductHolder.getProductHolder().getImageUrls();
+        mView.imageClick(imageUls);
+    }
+
+    public static class ChangeToolbarColor {
         private int color;
 
         public int getColor() {

@@ -30,4 +30,6 @@ public interface IProductView extends IBaseView, IHasComponent<ActivityComponent
     void setProductImageAdapter(List<String> imageUrls);
 
     void changeToolbarColor(int color);
+
+    void imageClick(List<String> imageUls);
 }

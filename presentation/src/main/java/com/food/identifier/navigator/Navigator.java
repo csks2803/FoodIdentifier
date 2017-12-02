@@ -132,6 +132,13 @@ public class Navigator {
         activity.startActivity(intent);
     }
 
+    public void replaceActivityAnimationFlag(Activity activity, Class className, int startAnimation, int endAnimation, int flag) {
+        Intent intent = new Intent(activity, className);
+        intent.setFlags(flag);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(startAnimation, endAnimation);
+    }
+
     public void replaceActivityAnimation(Activity activity, Class className, int startAnimation, int endAnimation) {
         Intent intent = new Intent(activity, className);
         activity.startActivity(intent);

@@ -87,8 +87,7 @@ public class ImageDetailsActivity extends MvpActivity<ImagePresenter> implements
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+              onBackPressed();
                 break;
         }
         return super.onOptionsItemSelected(item);

@@ -1,6 +1,5 @@
 package com.food.identifier.mvp.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,6 +34,6 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
 
     @Override
     public void moveToTutorial() {
-        mNavigator.replaceActivityAnimation(this, TutorialActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+        mNavigator.replaceActivityAnimationFlag(this, TutorialActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, FLAG_ACTIVITY_NO_HISTORY);
     }
 }

@@ -1,6 +1,5 @@
 package com.food.identifier.mvp.view.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-
 
 import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
@@ -21,7 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import me.relex.circleindicator.CircleIndicator;
 
-import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 import static android.view.View.GONE;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
@@ -61,7 +59,7 @@ public class TutorialActivity extends MvpActivity<TutorialPresenter> implements 
 
     @Override
     public void replace() {
-        mNavigator.replaceActivityFlag(this, IdScannerActivity.class, Intent.FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK);
+        mNavigator.replaceActivityFlag(this, IdScannerActivity.class, FLAG_ACTIVITY_NO_HISTORY);
     }
 
     @Override

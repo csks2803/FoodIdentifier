@@ -24,6 +24,9 @@
     <dimen name="size_52">52dp</dimen>
     <dimen name="size_56">56dp</dimen>
     <dimen name="size_60">60dp</dimen>
+    <dimen name="size_64">64dp</dimen>
+    <dimen name="size_68">68dp</dimen>
+    <dimen name="size_72">72dp</dimen>
 
     <dimen name="padding_tiny">2dp</dimen>
     <dimen name="padding_miny">4dp</dimen>

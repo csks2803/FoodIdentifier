@@ -22,4 +22,8 @@
 
     <string name="no_internet_connection">No Internet connection</string>
 
+    <string name="empty_email">Empty email</string>
+    <string name="empty_password">Empty password</string>
+    <string name="please_write_correct_email">Please enter correct email</string>
+
 </resources>

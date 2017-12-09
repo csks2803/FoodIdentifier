@@ -18,6 +18,7 @@ import android.support.v7.graphics.Palette.PaletteAsyncListener;
 import android.support.v7.graphics.Palette.Swatch;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.food.identifier.R;
@@ -108,6 +109,12 @@ public class ProductActivity extends MvpActivity<ProductPresenter> implements IP
 
     @Override
     public void setNavigationListener() {
+        mNavView.getHeaderView(0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mNavigator.replaceActivityAnimation(ProductActivity.this, LoginActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+            }
+        });
         mNavView.setNavigationItemSelectedListener(new OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {

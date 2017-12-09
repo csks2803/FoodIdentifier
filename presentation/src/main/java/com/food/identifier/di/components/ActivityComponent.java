@@ -4,6 +4,7 @@ import com.food.identifier.di.annotation.PerActivity;
 import com.food.identifier.di.module.ActivityModule;
 import com.food.identifier.di.module.FragmentModule;
 import com.food.identifier.mvp.presenter.activity.ImagePresenter;
+import com.food.identifier.mvp.presenter.activity.LoginPresenter;
 import com.food.identifier.mvp.presenter.activity.SplashPresenter;
 import com.food.identifier.mvp.presenter.activity.TutorialPresenter;
 import com.food.identifier.mvp.presenter.fragments.HistoryPresenter;
@@ -45,4 +46,6 @@ public interface ActivityComponent {
     void inject(TutorialPresenter tutorialPresenter);
 
     void inject(ImagePresenter imagePresenter);
+
+    void inject(LoginPresenter loginPresenter);
 }

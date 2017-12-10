@@ -3,9 +3,11 @@ package com.foodidentifier.data.utilities.mapper;
 import com.foodidentifier.data.model.CharacteristicEntityModel;
 import com.foodidentifier.data.model.FeedbackEntityModel;
 import com.foodidentifier.data.model.ProductEntityModel;
+import com.foodidentifier.data.model.UserEntityModel;
 import com.foodidentifier.domain.model.FeedbackDomainModel;
 import com.foodidentifier.domain.model.ProductCharacteristicsDomainModel;
 import com.foodidentifier.domain.model.ProductDomainModel;
+import com.foodidentifier.domain.model.UserDomainModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,5 +78,11 @@ public class DataToDomainTransformer {
         }
 
         return productCharacteristicsDomainModels;
+    }
+
+    public UserDomainModel transformUserModel(UserEntityModel userEntity) {
+        UserDomainModel userDomainModel = new UserDomainModel();
+
+        return userDomainModel;
     }
 }

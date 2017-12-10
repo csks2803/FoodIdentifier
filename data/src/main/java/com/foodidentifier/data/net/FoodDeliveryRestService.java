@@ -1,6 +1,7 @@
 package com.foodidentifier.data.net;
 
 import com.foodidentifier.data.model.ProductEntityModel;
+import com.foodidentifier.data.model.UserEntityModel;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -17,4 +18,7 @@ public interface FoodDeliveryRestService {
 
     @GET("/api/getProductListt")
     Call<ProductEntityModel> getProductListByUserId(String id);
+
+    @POST("/api/getUser")
+    Call<UserEntityModel> getUserById(String login, String password);
 }

@@ -10,4 +10,6 @@ public interface ILoginView extends IBaseView {
     void checkPasswordValidation(String error);
 
     void showLoading();
+
+    void hideProgress();
 }

@@ -34,6 +34,6 @@ public class SplashActivity extends MvpActivity<SplashPresenter> implements ISpl
 
     @Override
     public void moveToTutorial() {
-        mNavigator.replaceActivityAnimationFlag(this, TutorialActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, FLAG_ACTIVITY_NO_HISTORY);
+        mNavigator.replaceActivityAnimationFlag(this, LoginActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, FLAG_ACTIVITY_NO_HISTORY);
     }
 }

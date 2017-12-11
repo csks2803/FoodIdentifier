@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.food.identifier.R;
-import com.food.identifier.mvp.interfaces.activity.ILoginView;
-import com.food.identifier.mvp.presenter.activity.LoginPresenter;
+import com.food.identifier.mvp.interfaces.activity.IRegisterView;
+import com.food.identifier.mvp.presenter.activity.RegisterPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,21 +23,23 @@ import static android.view.View.VISIBLE;
  * Created by taras on 12/9/2017.
  */
 
-public class LoginActivity extends MvpActivity<LoginPresenter> implements ILoginView {
+public class RegisterActivity extends MvpActivity<RegisterPresenter> implements IRegisterView {
     @BindView(R.id.toolbar_header) Toolbar mToolbar;
-    @BindView(R.id.et_input_login) EditText mEtInputEmail;
-    @BindView(R.id.et_input_password) EditText mEtInputPassword;
+    @BindView(R.id.et_input_login) EditText mEtLogin;
+    @BindView(R.id.et_input_password) EditText mEtPassword;
     @BindView(R.id.pr_login_loading) ProgressBar mPrLoginLoading;
+    @BindView(R.id.et_input_first_name) EditText mEtFirstName;
+    @BindView(R.id.et_last_name) EditText mEtLastName;
 
     @NonNull
     @Override
-    public LoginPresenter createPresenter() {
-        return new LoginPresenter(createActivityComponent());
+    public RegisterPresenter createPresenter() {
+        return new RegisterPresenter(createActivityComponent());
     }
 
     @Override
     protected void onInit(@Nullable Bundle bundle) {
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
     }
 
@@ -67,28 +69,34 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
-    @OnClick(R.id.btn_sign_in)
-    public void loginClick() {
-        mPresenter.loginClick(this, mEtInputEmail.getText(), mEtInputPassword.getText());
-    }
-
-    @OnClick(R.id.tv_sign_up)
+    @OnClick(R.id.btn_sign_up)
     public void signUpClick() {
-        mPresenter.signUpClick();
+        mPresenter.showProgress();
+        mPresenter.registerUser(this, mEtLogin.getText().toString(), mEtPassword.getText().toString(), mEtFirstName.getText().toString(), mEtLastName.getText().toString());
     }
 
     @Override
-    public void showEmailValidationError(String error) {
-        mEtInputEmail.setError(error);
+    public void showLoginValidationError(String error) {
+        mEtLogin.setError(error);
     }
 
     @Override
     public void showPasswordValidationError(String error) {
-        mEtInputPassword.setError(error);
+        mEtPassword.setError(error);
     }
 
     @Override
-    public void showLoading() {
+    public void showFirstNameValidationError(String error) {
+        mEtFirstName.setError(error);
+    }
+
+    @Override
+    public void showLastNameValidationError(String error) {
+        mEtLastName.setError(error);
+    }
+
+    @Override
+    public void showProgress() {
         mPrLoginLoading.setVisibility(VISIBLE);
     }
 
@@ -98,12 +106,8 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
     }
 
     @Override
-    public void closeScreen() {
+    public void hideScreen() {
         finish();
     }
 
-    @Override
-    public void replaceToSignUp() {
-        mNavigator.replaceActivityAnimation(this, RegisterActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
-    }
 }

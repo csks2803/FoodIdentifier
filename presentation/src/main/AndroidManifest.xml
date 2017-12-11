@@ -51,6 +51,11 @@
             android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".mvp.view.activity.LoginActivity"
+            android:label="@string/sign_in"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".mvp.view.activity.RegisterActivity"
+            android:label="@string/sign_up"
             android:screenOrientation="portrait"/>
 
     </application>

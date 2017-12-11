@@ -24,6 +24,17 @@
 
     <string name="empty_email">Empty email</string>
     <string name="empty_password">Empty password</string>
+    <string name="empty_first_name">Empty first name</string>
+    <string name="empty_last_name">Empty last name</string>
     <string name="please_write_correct_email">Please enter correct email</string>
+    <string name="please_write_correct_password">Password should not be less then 6 char include specific symbols and uppercase letters</string>
+
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="organization_error">Your organization is not register. Please contact to the administrator.</string>
+    <string name="no_account_yet_create_one">No account yet? Create one</string>
 
 </resources>

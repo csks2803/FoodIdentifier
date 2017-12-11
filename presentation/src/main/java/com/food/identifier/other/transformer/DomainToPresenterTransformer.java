@@ -3,9 +3,12 @@ package com.food.identifier.other.transformer;
 import com.food.identifier.mvp.model.FeedbackPresentationModel;
 import com.food.identifier.mvp.model.ProductCharacteristicsPresentationModel;
 import com.food.identifier.mvp.model.ProductPresentationModel;
+import com.food.identifier.mvp.model.UserPresenterModel;
+import com.foodidentifier.data.model.UserEntityModel;
 import com.foodidentifier.domain.model.FeedbackDomainModel;
 import com.foodidentifier.domain.model.ProductCharacteristicsDomainModel;
 import com.foodidentifier.domain.model.ProductDomainModel;
+import com.foodidentifier.domain.model.UserDomainModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,4 +81,15 @@ public class DomainToPresenterTransformer {
         return productCharacteristicsPresenterModels;
     }
 
+    public UserPresenterModel transformUserModel(UserDomainModel userDomainModel) {
+        UserPresenterModel userPresenterModel = new UserPresenterModel();
+
+        userPresenterModel.setId(userDomainModel.getId());
+        userPresenterModel.setFirstName(userDomainModel.getFirstName());
+        userPresenterModel.setLastName(userDomainModel.getLastName());
+        userPresenterModel.setType(userDomainModel.getType());
+        userPresenterModel.setImageUrl(userDomainModel.getImageUrl());
+
+        return userPresenterModel;
+    }
 }

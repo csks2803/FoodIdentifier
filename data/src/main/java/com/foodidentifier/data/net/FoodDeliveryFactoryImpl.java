@@ -3,11 +3,14 @@ package com.foodidentifier.data.net;
 import android.content.Context;
 
 import com.foodidentifier.data.model.ProductEntityModel;
+import com.foodidentifier.data.model.RegisterFormEntityModel;
 import com.foodidentifier.data.model.UserEntityModel;
 import com.foodidentifier.data.utilities.Utility;
 import com.foodidentifier.data.utilities.mapper.DataToDomainTransformer;
+import com.foodidentifier.data.utilities.mapper.DomainToDataTransformer;
 import com.foodidentifier.data.utilities.mapper.JsonMapper;
 import com.foodidentifier.domain.model.ProductDomainModel;
+import com.foodidentifier.domain.model.RegisterFormDomainModel;
 import com.foodidentifier.domain.model.UserDomainModel;
 
 import java.util.List;
@@ -59,7 +62,7 @@ class FoodDeliveryFactoryImpl {
         });
     }
 
-    public Observable<List<ProductDomainModel>> getProductListByUserId(String id) {
+    Observable<List<ProductDomainModel>> getProductListByUserId(String id) {
         return Observable.create(new OnSubscribe<List<ProductDomainModel>>() {
             @Override
             public void call(Subscriber<? super List<ProductDomainModel>> subscriber) {
@@ -87,7 +90,7 @@ class FoodDeliveryFactoryImpl {
         });
     }
 
-    public Observable<UserDomainModel> getUserByCredential(String login, String password) {
+    Observable<UserDomainModel> loginUser(String login, String password) {
         return Observable.create(new OnSubscribe<UserDomainModel>() {
             @Override
             public void call(Subscriber<? super UserDomainModel> subscriber) {
@@ -105,12 +108,36 @@ class FoodDeliveryFactoryImpl {
 //                    }
 //                });
 
-                String json = Utility.loadJSONFromAsset(mContext, "product-list.json");
+                String json = Utility.loadJSONFromAsset(mContext, "user_customer.json");
                 UserEntityModel userEntity = new JsonMapper().fromJson(json, UserEntityModel.class);
 
                 UserDomainModel userDomainModel = mTransformer.transformUserModel(userEntity);
 
                 subscriber.onNext(userDomainModel);
+                subscriber.onCompleted();
+            }
+        });
+    }
+
+    Observable<Void> registerUser(final RegisterFormDomainModel registerUser) {
+        return Observable.create(new OnSubscribe<Void>() {
+            @Override
+            public void call(Subscriber<? super Void> subscriber) {
+                DomainToDataTransformer domainToDataTransformer = new DomainToDataTransformer();
+                RegisterFormEntityModel registerFormEntityModel = domainToDataTransformer.transformRegister(registerUser);
+//                final Call<Void> request = mApi.getService().registerUser(registerFormEntityModel);
+//                request.enqueue(new Callback<Void>() {
+//                    @Override
+//                    public void onResponse(Call<Void> call, Response<Void> response) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Void> call, Throwable t) {
+//
+//                    }
+//                });
+
                 subscriber.onCompleted();
             }
         });

@@ -83,6 +83,12 @@ public class DataToDomainTransformer {
     public UserDomainModel transformUserModel(UserEntityModel userEntity) {
         UserDomainModel userDomainModel = new UserDomainModel();
 
+        userDomainModel.setId(userEntity.getId());
+        userDomainModel.setFirstName(userEntity.getFirstName());
+        userDomainModel.setLastName(userEntity.getLastName());
+        userDomainModel.setType(userEntity.getType());
+        userDomainModel.setImageUrl(userEntity.getImageUrl());
+
         return userDomainModel;
     }
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 
 import com.foodidentifier.data.utilities.mapper.DataToDomainTransformer;
 import com.foodidentifier.domain.model.ProductDomainModel;
+import com.foodidentifier.domain.model.RegisterFormDomainModel;
+import com.foodidentifier.domain.model.UserDomainModel;
 import com.foodidentifier.domain.net.IFoodIdentifierFactory;
 
 import java.util.List;
@@ -45,5 +47,25 @@ public class FoodIdentifierFactory implements IFoodIdentifierFactory {
         FoodDeliveryFactoryImpl foodDeliveryFactory = new FoodDeliveryFactoryImpl(mContext, api, transformer);
 
         return foodDeliveryFactory.getProductListByUserId(id);
+    }
+
+    @Override
+    public Observable<UserDomainModel> loginUser(final String password, final String login) {
+        FoodDeliveryRestApi api = new FoodDeliveryRestApi(BASE_URL);
+
+        DataToDomainTransformer transformer = new DataToDomainTransformer();
+        FoodDeliveryFactoryImpl foodDeliveryFactory = new FoodDeliveryFactoryImpl(mContext, api, transformer);
+
+        return foodDeliveryFactory.loginUser(login, password);
+    }
+
+    @Override
+    public Observable<Void> registerUser(RegisterFormDomainModel registerFormDomainModel) {
+        FoodDeliveryRestApi api = new FoodDeliveryRestApi(BASE_URL);
+
+        DataToDomainTransformer transformer = new DataToDomainTransformer();
+        FoodDeliveryFactoryImpl foodDeliveryFactory = new FoodDeliveryFactoryImpl(mContext, api, transformer);
+
+        return foodDeliveryFactory.registerUser(registerFormDomainModel);
     }
 }

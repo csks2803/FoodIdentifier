@@ -6,6 +6,7 @@ import com.food.identifier.di.module.FragmentModule;
 import com.food.identifier.mvp.presenter.activity.ImagePresenter;
 import com.food.identifier.mvp.presenter.activity.LoginPresenter;
 import com.food.identifier.mvp.presenter.activity.RegisterPresenter;
+import com.food.identifier.mvp.presenter.activity.SelectRolePresenter;
 import com.food.identifier.mvp.presenter.activity.SplashPresenter;
 import com.food.identifier.mvp.presenter.activity.TutorialPresenter;
 import com.food.identifier.mvp.presenter.fragments.HistoryPresenter;
@@ -51,4 +52,6 @@ public interface ActivityComponent {
     void inject(LoginPresenter loginPresenter);
 
     void inject(RegisterPresenter registerPresenter);
+
+    void inject(SelectRolePresenter selectRolePresenter);
 }

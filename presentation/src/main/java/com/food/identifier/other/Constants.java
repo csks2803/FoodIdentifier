@@ -9,5 +9,8 @@ public class Constants {
     //region BUNDLE CONSTANTS/////
     public static final String TUTORIAL_KEY = TAG + "tutorial.key";
     public static final String USER_ROLE = TAG + "user.role";
+
+    public static final int USER_TYPE = 0;
+    public static final int ORGANIZATION_TYPE = 1;
     //endregion
 }

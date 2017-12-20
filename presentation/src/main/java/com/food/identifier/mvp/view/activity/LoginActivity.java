@@ -104,6 +104,6 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
 
     @Override
     public void replaceToSignUp() {
-        mNavigator.replaceActivityAnimation(this, RegisterActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+        mNavigator.replaceActivityAnimation(this, SelectRoleActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
     }
 }

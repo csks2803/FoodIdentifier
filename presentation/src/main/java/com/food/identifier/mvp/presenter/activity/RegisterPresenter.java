@@ -34,6 +34,7 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public class RegisterPresenter extends BasePresenter<IRegisterView> {
+    public static final int DEFAULT_VALUE = -1;
     @Inject ThreadExecutor mTreadExecutor;
     @Inject PostExecutionThread mPostExecutor;
     @Inject IFoodIdentifierFactory mFoodIdentifierFactory;
@@ -45,8 +46,7 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
     }
 
     @Override
-    protected void onViewAttach(Activity context) {
-
+    protected void onViewAttach(Activity activity) {
     }
 
     @Override

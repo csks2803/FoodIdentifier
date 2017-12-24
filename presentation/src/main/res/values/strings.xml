@@ -8,7 +8,7 @@
 
     <string name="tutorial_one">Description one</string>
     <string name="tutorial_two">Description two</string>
-    <string name="tutorial_three">Description three</string>
+    <string name="tutorial_three">You will be able to leave feedback about product when you will sign in. Please do it.</string>
     <string name="tutorial_four">Description four</string>
 
     <string name="about">About</string>
@@ -27,7 +27,7 @@
     <string name="empty_first_name">Empty first name</string>
     <string name="empty_last_name">Empty last name</string>
     <string name="please_write_correct_email">Please enter correct email</string>
-    <string name="please_write_correct_password">Password should not be less then 6 char include specific symbols and uppercase letters</string>
+    <string name="please_write_correct_password">Password should not be less then 8 char include specific symbols and uppercase letters</string>
 
     <string name="password">Password</string>
     <string name="email">Email</string>

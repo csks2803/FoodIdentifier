@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.food.identifier.R;
 import com.food.identifier.mvp.interfaces.activity.IRegisterView;
@@ -18,6 +19,8 @@ import butterknife.OnClick;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static com.food.identifier.mvp.presenter.activity.RegisterPresenter.DEFAULT_VALUE;
+import static com.food.identifier.other.Constants.ROLE;
 
 /**
  * Created by taras on 12/9/2017.
@@ -71,28 +74,38 @@ public class RegisterActivity extends MvpActivity<RegisterPresenter> implements 
 
     @OnClick(R.id.btn_sign_up)
     public void signUpClick() {
-        mPresenter.showProgress();
-        mPresenter.registerUser(this, mEtLogin.getText().toString(), mEtPassword.getText().toString(), mEtFirstName.getText().toString(), mEtLastName.getText().toString());
+        int userType = getIntent().getIntExtra(ROLE, DEFAULT_VALUE);
+        mPresenter.registerUser(userType, mEtLogin.getText().toString(), mEtPassword.getText().toString(), mEtFirstName.getText().toString(), mEtLastName.getText().toString());
     }
 
     @Override
-    public void showLoginValidationError(String error) {
-        mEtLogin.setError(error);
+    public void showLoginValidationError(int error) {
+        mEtLogin.setError(getString(error));
     }
 
     @Override
-    public void showPasswordValidationError(String error) {
-        mEtPassword.setError(error);
+    public void showPasswordValidationError(int error) {
+        mEtPassword.setError(getString(error));
     }
 
     @Override
-    public void showFirstNameValidationError(String error) {
-        mEtFirstName.setError(error);
+    public void showFirstNameValidationError(int error) {
+        mEtFirstName.setError(getString(error));
     }
 
     @Override
-    public void showLastNameValidationError(String error) {
-        mEtLastName.setError(error);
+    public void showLastNameValidationError(int error) {
+        mEtLastName.setError(getString(error));
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void closeScreen() {
+        finish();
     }
 
     @Override

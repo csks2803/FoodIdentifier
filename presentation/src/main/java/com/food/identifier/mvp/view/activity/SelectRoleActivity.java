@@ -21,7 +21,7 @@ import static com.food.identifier.other.Constants.USER_TYPE;
 
 public class SelectRoleActivity extends MvpActivity<SelectRolePresenter> implements ISelectRoleView {
     @Override
-    public void replaceToRegistration(Bundle bundle) {
+    public void replaceToLogin(Bundle bundle) {
         mNavigator.replaceActivityAnimation(this, RegisterActivity.class, bundle, android.R.anim.fade_in, android.R.anim.fade_out);
     }
 

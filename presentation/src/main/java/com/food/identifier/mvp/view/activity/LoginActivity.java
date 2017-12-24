@@ -3,10 +3,12 @@ package com.food.identifier.mvp.view.activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.food.identifier.R;
 import com.food.identifier.mvp.interfaces.activity.ILoginView;
@@ -16,6 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
+import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
@@ -43,12 +47,11 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
 
     @Override
     public void configureToolbar() {
-        mToolbar.setNavigationIcon(R.drawable.ic_close_white);
-        setSupportActionBar(mToolbar);
-
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+        mToolbar.setNavigationIcon(R.drawable.ic_close_white);
+        setSupportActionBar(mToolbar);
     }
 
     @Override
@@ -69,7 +72,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
 
     @OnClick(R.id.btn_sign_in)
     public void loginClick() {
-        mPresenter.loginClick(this, mEtInputEmail.getText(), mEtInputPassword.getText());
+        mPresenter.loginClick(mEtInputEmail.getText(), mEtInputPassword.getText());
     }
 
     @OnClick(R.id.tv_sign_up)
@@ -78,13 +81,13 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
     }
 
     @Override
-    public void showEmailValidationError(String error) {
-        mEtInputEmail.setError(error);
+    public void showEmailValidationError(int error) {
+        mEtInputEmail.setError(getString(error));
     }
 
     @Override
-    public void showPasswordValidationError(String error) {
-        mEtInputPassword.setError(error);
+    public void showPasswordValidationError(int error) {
+        mEtInputPassword.setError(getString(error));
     }
 
     @Override
@@ -98,6 +101,16 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
     }
 
     @Override
+    public void replaceToMainScreen() {
+        mNavigator.replaceActivityAnimation(this, ProductActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    @Override
+    public void replaceToScanScreen() {
+        mNavigator.replaceActivityAnimation(this, IdScannerActivity.class, FLAG_ACTIVITY_NO_HISTORY, android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    @Override
     public void closeScreen() {
         finish();
     }
@@ -105,5 +118,10 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
     @Override
     public void replaceToSignUp() {
         mNavigator.replaceActivityAnimation(this, SelectRoleActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

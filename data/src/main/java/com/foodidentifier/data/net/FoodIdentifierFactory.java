@@ -50,7 +50,7 @@ public class FoodIdentifierFactory implements IFoodIdentifierFactory {
     }
 
     @Override
-    public Observable<UserDomainModel> loginUser(final String password, final String login) {
+    public Observable<UserDomainModel> loginUser(final String login, final String password) {
         FoodDeliveryRestApi api = new FoodDeliveryRestApi(BASE_URL);
 
         DataToDomainTransformer transformer = new DataToDomainTransformer();

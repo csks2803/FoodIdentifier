@@ -6,17 +6,22 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.food.identifier.R;
 import com.food.identifier.mvp.interfaces.fragment.ITutorialScreenView;
 import com.food.identifier.mvp.presenter.fragments.TutorialScreenPresenter;
+import com.food.identifier.mvp.view.activity.LoginActivity;
+import com.food.identifier.mvp.view.activity.RegisterActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 import static com.food.identifier.other.Constants.TUTORIAL_KEY;
+import static com.food.identifier.other.Constants.TUTORIAL_POSITION;
 
 
 /**
@@ -25,12 +30,16 @@ import static com.food.identifier.other.Constants.TUTORIAL_KEY;
 
 public class TutorialScreenFragment extends MvpFragment<TutorialScreenPresenter> implements ITutorialScreenView {
 
-    @BindView(R.id.tv_package_desc) TextView mTvDescription;
+    @BindView(R.id.tv_package_desc) TextView mTvTitle;
+    @BindView(R.id.bt_sign_in) Button mBtSignIn;
+    @BindView(R.id.bt_sign_up) Button mBtSignUp;
+
     private Unbinder unbinder;
 
-    public static TutorialScreenFragment getInstance(String info) {
+    public static TutorialScreenFragment getInstance(String info, int position) {
         Bundle bundle = new Bundle();
         bundle.putString(TUTORIAL_KEY, info);
+        bundle.putInt(TUTORIAL_POSITION, position);
 
         TutorialScreenFragment fragment = new TutorialScreenFragment();
         fragment.setArguments(bundle);
@@ -68,11 +77,55 @@ public class TutorialScreenFragment extends MvpFragment<TutorialScreenPresenter>
 
     @Override
     public void bindTitle() {
-        mPresenter.bindTitle(getArguments());
+        if (getArguments() != null) {
+            String result = getArguments().getString(TUTORIAL_KEY);
+            mPresenter.bindTitle(result);
+        }
     }
 
     @Override
     public void setTitle(String text) {
-        mTvDescription.setText(text);
+        mTvTitle.setText(text);
+    }
+
+    @Override
+    public void showHideButtons() {
+        if (getArguments() != null) {
+            int position = getArguments().getInt(TUTORIAL_POSITION);
+            mPresenter.showHideButtons(position);
+        }
+    }
+
+    @Override
+    public void showHideLogin(int visibilityState) {
+        mBtSignIn.setVisibility(visibilityState);
+    }
+
+
+    @Override
+    public void showHideRegister(int visibilityState) {
+        mBtSignUp.setVisibility(visibilityState);
+    }
+
+    @Override
+    public void replaceToLogin() {
+        mNavigator.replaceActivityAnimation(getActivity(), LoginActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    @Override
+    public void replaceToRegister() {
+        mNavigator.replaceActivityAnimation(getActivity(), RegisterActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    @OnClick({R.id.bt_sign_in, R.id.bt_sign_up})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.bt_sign_in:
+                mPresenter.replaceToLogin();
+                break;
+            case R.id.bt_sign_up:
+                mPresenter.replaceToRegister();
+                break;
+        }
     }
 }

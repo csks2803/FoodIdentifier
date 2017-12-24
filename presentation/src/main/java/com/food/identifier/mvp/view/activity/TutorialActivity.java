@@ -14,6 +14,10 @@ import com.food.identifier.mvp.interfaces.activity.ITutorialView;
 import com.food.identifier.mvp.presenter.activity.TutorialPresenter;
 import com.food.identifier.mvp.view.adapters.TutorialAdapter;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -59,7 +63,7 @@ public class TutorialActivity extends MvpActivity<TutorialPresenter> implements 
 
     @Override
     public void replace() {
-        mNavigator.replaceActivityFlag(this, IdScannerActivity.class, FLAG_ACTIVITY_NO_HISTORY);
+        mNavigator.replaceActivityAnimationFlag(this, IdScannerActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, FLAG_ACTIVITY_NO_HISTORY);
     }
 
     @Override
@@ -67,6 +71,12 @@ public class TutorialActivity extends MvpActivity<TutorialPresenter> implements 
         TutorialAdapter adapter = new TutorialAdapter(this, getSupportFragmentManager());
         mVpTutorial.setAdapter(adapter);
         mVpTutorial.addOnPageChangeListener(this);
+        mIndicator.setViewPager(mVpTutorial);
+    }
+
+    @Override
+    public void removeLoginItem(int item) {
+        ((TutorialAdapter) mVpTutorial.getAdapter()).updateData(item);
         mIndicator.setViewPager(mVpTutorial);
     }
 

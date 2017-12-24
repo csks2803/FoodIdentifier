@@ -4,9 +4,14 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.view.ViewGroup;
 
 import com.food.identifier.R;
 import com.food.identifier.mvp.view.fragments.TutorialScreenFragment;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -16,23 +21,36 @@ import com.food.identifier.mvp.view.fragments.TutorialScreenFragment;
  * Company: FoodDelivery
  */
 public class TutorialAdapter extends FragmentStatePagerAdapter {
-
-    private static final int ITEM_COUNT = 4;
-    private final String[] mArrayList;
+    private List<String> mArrayList= new ArrayList<>();
 
     public TutorialAdapter(Context context, FragmentManager fm) {
         super(fm);
-        mArrayList = context.getResources().getStringArray(R.array.array_tutorial_desc);
+        mArrayList = Arrays.asList(context.getResources().getStringArray(R.array.array_tutorial_desc));
     }
 
     @Override
     public Fragment getItem(int position) {
-        String description = mArrayList[position];
-        return TutorialScreenFragment.getInstance(description);
+        String description = mArrayList.get(position);
+        return TutorialScreenFragment.getInstance(description, position);
     }
 
     @Override
     public int getCount() {
-        return ITEM_COUNT;
+        return mArrayList.size();
+    }
+
+    public void updateData(int item) {
+        mArrayList.remove(item);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemPosition(Object object){
+        return POSITION_NONE;
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        super.destroyItem(container, position, object);
     }
 }

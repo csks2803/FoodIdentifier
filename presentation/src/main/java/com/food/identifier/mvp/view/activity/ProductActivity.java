@@ -189,6 +189,11 @@ public class ProductActivity extends MvpActivity<ProductPresenter> implements IP
     }
 
     @Override
+    public void showOrganizationView() {
+
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: {

@@ -9,5 +9,16 @@ import com.food.identifier.mvp.interfaces.activity.IBaseView;
 
 public interface ITutorialScreenView extends IBaseView {
     void bindTitle();
+
     void setTitle(String text);
+
+    void showHideButtons();
+
+    void showHideLogin(int visibilityState);
+
+    void showHideRegister(int visibilityState);
+
+    void replaceToLogin();
+
+    void replaceToRegister();
 }

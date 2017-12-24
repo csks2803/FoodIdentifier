@@ -7,7 +7,7 @@ import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.ISelectRoleView;
 import com.food.identifier.mvp.presenter.BasePresenter;
 
-import static com.food.identifier.other.Constants.USER_ROLE;
+import static com.food.identifier.other.Constants.ROLE;
 
 /**
  * Created by taras on 12/13/2017.
@@ -26,8 +26,8 @@ public class SelectRolePresenter extends BasePresenter<ISelectRoleView> {
 
     public void replace(int role) {
         Bundle bundle = new Bundle();
-        bundle.putInt(USER_ROLE, role);
-        mView.replaceToRegistration(bundle);
+        bundle.putInt(ROLE, role);
+        mView.replaceToLogin(bundle);
     }
 
     @Override

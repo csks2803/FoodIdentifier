@@ -7,12 +7,22 @@ package com.food.identifier.mvp.interfaces.activity;
 public interface IRegisterView extends IBaseView {
 
     void hideScreen();
-    void showProgress();
-    void hideProgress();
-    void configureToolbar();
-    void showLoginValidationError(String error);
-    void showPasswordValidationError(String error);
-    void showFirstNameValidationError(String error);
-    void showLastNameValidationError(String error);
 
+    void showProgress();
+
+    void hideProgress();
+
+    void configureToolbar();
+
+    void showLoginValidationError(int error);
+
+    void showPasswordValidationError(int error);
+
+    void showFirstNameValidationError(int error);
+
+    void showLastNameValidationError(int error);
+
+    void showError(String message);
+
+    void closeScreen();
 }

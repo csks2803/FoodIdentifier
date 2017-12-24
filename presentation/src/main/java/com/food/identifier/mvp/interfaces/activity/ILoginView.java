@@ -5,9 +5,9 @@ package com.food.identifier.mvp.interfaces.activity;
  */
 
 public interface ILoginView extends IBaseView {
-    void showEmailValidationError(String error);
+    void showEmailValidationError(int error);
 
-    void showPasswordValidationError(String error);
+    void showPasswordValidationError(int error);
 
     void showLoading();
 
@@ -15,7 +15,13 @@ public interface ILoginView extends IBaseView {
 
     void hideProgress();
 
-    void closeScreen();
+    void replaceToMainScreen();
 
     void replaceToSignUp();
+
+    void showError(String message);
+
+    void replaceToScanScreen();
+
+    void closeScreen();
 }

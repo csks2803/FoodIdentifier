@@ -8,5 +8,5 @@ import android.os.Bundle;
 
 public interface ISelectRoleView extends IBaseView {
 
-    void replaceToRegistration(Bundle bundle);
+    void replaceToLogin(Bundle bundle);
 }

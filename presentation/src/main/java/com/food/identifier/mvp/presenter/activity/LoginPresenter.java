@@ -9,6 +9,7 @@ import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.ILoginView;
 import com.food.identifier.mvp.presenter.BasePresenter;
 import com.food.identifier.other.utility.Utility;
+import com.foodidentifier.data.exceptions.NotValidCredentialException;
 import com.foodidentifier.domain.executor.PostExecutionThread;
 import com.foodidentifier.domain.executor.ThreadExecutor;
 import com.foodidentifier.domain.interactor.DefaultSubscriber;
@@ -17,15 +18,21 @@ import com.foodidentifier.domain.interactor.UseCaseLoginUser;
 import com.foodidentifier.domain.model.UserDomainModel;
 import com.foodidentifier.domain.net.IFoodIdentifierFactory;
 
+import org.greenrobot.eventbus.EventBus;
+
 import javax.inject.Inject;
 
 import rx.subscriptions.CompositeSubscription;
+
+import static com.food.identifier.other.Constants.ORGANIZATION_TYPE;
+import static com.food.identifier.other.Constants.USER_TYPE;
 
 /**
  * Created by taras on 12/9/2017.
  */
 
 public class LoginPresenter extends BasePresenter<ILoginView> {
+    public static final int DEFAULT_VALUE = -1;
     @Inject ThreadExecutor mTreadExecutor;
     @Inject PostExecutionThread mPostExecutor;
     @Inject IFoodIdentifierFactory mFoodIdentifierFactory;
@@ -38,7 +45,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
 
     @Override
     protected void onViewAttach(Activity context) {
-
+        mView.configureToolbar();
     }
 
     @Override
@@ -50,9 +57,9 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         mView.replaceToSignUp();
     }
 
-    public void loginClick(Activity activity, Editable email, Editable password) {
-        boolean isEmailValid = emailValidation(activity, email);
-        boolean isPasswordValid = passwordValidation(activity, password);
+    public void loginClick(Editable email, Editable password) {
+        boolean isEmailValid = emailValidation(email);
+        boolean isPasswordValid = passwordValidation(password);
 
         if (isEmailValid && isPasswordValid) {
             mView.showLoading();
@@ -60,16 +67,16 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         }
     }
 
-    private boolean passwordValidation(Activity activity, Editable password) {
-        String error = null;
+    private boolean passwordValidation(Editable password) {
+        int error = DEFAULT_VALUE;
 
         if (!TextUtils.isEmpty(password) && !Utility.passwordValidate(password.toString())) {
-            error = activity.getString(R.string.please_write_correct_password);
+            error = R.string.please_write_correct_password;
         } else if (TextUtils.isEmpty(password)) {
-            error = activity.getString(R.string.empty_password);
+            error = R.string.empty_password;
         }
 
-        if (TextUtils.isEmpty(error)) {
+        if (error == DEFAULT_VALUE) {
             return true;
         } else {
             mView.showPasswordValidationError(error);
@@ -78,15 +85,15 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         return false;
     }
 
-    private boolean emailValidation(Activity activity, Editable email) {
-        String error = null;
+    private boolean emailValidation(Editable email) {
+        int error = DEFAULT_VALUE;
         if (!TextUtils.isEmpty(email) && !Utility.emailValidate(email.toString())) {
-            error = activity.getString(R.string.please_write_correct_email);
+            error = R.string.please_write_correct_email;
         } else if (TextUtils.isEmpty(email)) {
-            error = activity.getString(R.string.empty_email);
+            error = R.string.empty_email;
         }
 
-        if (TextUtils.isEmpty(error)) {
+        if (error == DEFAULT_VALUE) {
             return true;
         } else {
             mView.showEmailValidationError(error);
@@ -115,12 +122,30 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         @Override
         public void onError(Throwable e) {
             mView.hideProgress();
+            if (e instanceof NotValidCredentialException) {
+                mView.showError(e.getMessage());
+            }
         }
 
         @Override
         public void onNext(UserDomainModel userDomainModel) {
+            LoginSuccess loginSuccess = new LoginSuccess();
+            loginSuccess.setRole(userDomainModel.getType());
 
+            EventBus.getDefault().post(loginSuccess);
         }
     }
     //endregion
+
+    public static class LoginSuccess {
+        private int role;
+
+        public int getRole() {
+            return role;
+        }
+
+        public void setRole(int role) {
+            this.role = role;
+        }
+    }
 }

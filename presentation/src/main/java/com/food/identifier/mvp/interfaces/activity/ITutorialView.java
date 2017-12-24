@@ -18,4 +18,5 @@ public interface ITutorialView extends IBaseView, IHasComponent<ActivityComponen
 
     void createAdapter();
 
+    void removeLoginItem(int item);
 }

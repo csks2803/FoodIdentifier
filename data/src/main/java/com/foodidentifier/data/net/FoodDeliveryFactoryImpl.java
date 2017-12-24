@@ -2,6 +2,7 @@ package com.foodidentifier.data.net;
 
 import android.content.Context;
 
+import com.foodidentifier.data.exceptions.NotValidCredentialException;
 import com.foodidentifier.data.model.ProductEntityModel;
 import com.foodidentifier.data.model.RegisterFormEntityModel;
 import com.foodidentifier.data.model.UserEntityModel;
@@ -90,7 +91,7 @@ class FoodDeliveryFactoryImpl {
         });
     }
 
-    Observable<UserDomainModel> loginUser(String login, String password) {
+    Observable<UserDomainModel> loginUser(String login, final String password) {
         return Observable.create(new OnSubscribe<UserDomainModel>() {
             @Override
             public void call(Subscriber<? super UserDomainModel> subscriber) {
@@ -108,13 +109,18 @@ class FoodDeliveryFactoryImpl {
 //                    }
 //                });
 
-                String json = Utility.loadJSONFromAsset(mContext, "user_customer.json");
-                UserEntityModel userEntity = new JsonMapper().fromJson(json, UserEntityModel.class);
+                if (password.equalsIgnoreCase("123456aA!")) {
 
-                UserDomainModel userDomainModel = mTransformer.transformUserModel(userEntity);
+                    String json = Utility.loadJSONFromAsset(mContext, "user_customer.json");
+                    UserEntityModel userEntity = new JsonMapper().fromJson(json, UserEntityModel.class);
 
-                subscriber.onNext(userDomainModel);
-                subscriber.onCompleted();
+                    UserDomainModel userDomainModel = mTransformer.transformUserModel(userEntity);
+
+                    subscriber.onNext(userDomainModel);
+                    subscriber.onCompleted();
+                } else {
+                    subscriber.onError(new NotValidCredentialException("Wrong Password"));
+                }
             }
         });
     }
@@ -138,7 +144,13 @@ class FoodDeliveryFactoryImpl {
 //                    }
 //                });
 
-                subscriber.onCompleted();
+                if (registerUser.getLogin().equalsIgnoreCase("test.organization@gmail.com") && registerUser.getType() == 1
+                        || registerUser.getLogin().equalsIgnoreCase("test.user@gmail.com") && registerUser.getType() == 0) {
+                    subscriber.onCompleted();
+                } else {
+                    subscriber.onError(new NotValidCredentialException("This organization was not register. Please contact us for more details."));
+                }
+
             }
         });
     }

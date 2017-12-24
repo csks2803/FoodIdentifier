@@ -145,6 +145,20 @@ public class Navigator {
         activity.overridePendingTransition(startAnimation, endAnimation);
     }
 
+    public void replaceActivityAnimationForResult(Activity activity, Class className, int requestCode, int startAnimation, int endAnimation) {
+        Intent intent = new Intent(activity, className);
+        activity.startActivityForResult(intent, requestCode);
+        activity.overridePendingTransition(startAnimation, endAnimation);
+    }
+
+    public void replaceActivityAnimationForResultBundle(Activity activity, Class className, int requestCode, Bundle bundle, int startAnimation, int endAnimation) {
+        Intent intent = new Intent(activity, className);
+        intent.putExtras(bundle);
+        activity.startActivityForResult(intent, requestCode);
+        activity.overridePendingTransition(startAnimation, endAnimation);
+    }
+
+
     public void replaceActivityFlag(Activity activity, Class className, int flags) {
         Intent intent = new Intent(activity, className);
         intent.addFlags(flags);

@@ -16,7 +16,7 @@ public class UseCaseLoginUser extends UseCase {
     private final String mLogin;
     private final String mPassword;
 
-    public UseCaseLoginUser(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, IFoodIdentifierFactory factory, String login,String password) {
+    public UseCaseLoginUser(ThreadExecutor threadExecutor, PostExecutionThread postExecutionThread, IFoodIdentifierFactory factory, String login, String password) {
         super(threadExecutor, postExecutionThread);
         mFactory = factory;
         mLogin = login;
@@ -25,6 +25,6 @@ public class UseCaseLoginUser extends UseCase {
 
     @Override
     protected Observable buildUseCaseObservable() {
-        return mFactory.loginUser(mLogin,mPassword);
+        return mFactory.loginUser(mLogin, mPassword);
     }
 }

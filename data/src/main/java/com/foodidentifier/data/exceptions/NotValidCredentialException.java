@@ -18,21 +18,21 @@ package com.foodidentifier.data.exceptions;
 /**
  * Exception throw by the application when a there is a network connection exception.
  */
-public class NotValidOnranizationException extends Exception {
+public class NotValidCredentialException extends Exception {
 
-  public NotValidOnranizationException() {
+  public NotValidCredentialException() {
     super();
   }
 
-  public NotValidOnranizationException(final String message) {
+  public NotValidCredentialException(final String message) {
     super(message);
   }
 
-  public NotValidOnranizationException(final String message, final Throwable cause) {
+  public NotValidCredentialException(final String message, final Throwable cause) {
     super(message, cause);
   }
 
-  public NotValidOnranizationException(final Throwable cause) {
+  public NotValidCredentialException(final Throwable cause) {
     super(cause);
   }
 }

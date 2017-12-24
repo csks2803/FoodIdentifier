@@ -1,7 +1,5 @@
 package com.food.identifier.mvp.view.activity;
 
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,8 +12,6 @@ import com.food.identifier.mvp.interfaces.activity.IIdScannerView;
 import com.food.identifier.mvp.presenter.activity.IdScannerPresenter;
 import com.food.identifier.other.utility.CloudHelper;
 import com.google.zxing.ResultPoint;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
 import com.journeyapps.barcodescanner.BarcodeCallback;
 import com.journeyapps.barcodescanner.BarcodeResult;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
@@ -60,6 +56,8 @@ public class IdScannerActivity extends MvpActivity<IdScannerPresenter> implement
                 // Prevent duplicate scans
                 return;
             }
+            lastText = result.getText();
+
             if (CloudHelper.isOnline(IdScannerActivity.this)) {
                 mPresenter.sendScannedResult(result.getText());
             } else {

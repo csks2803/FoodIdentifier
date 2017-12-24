@@ -11,6 +11,8 @@ import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IProductView;
 import com.food.identifier.mvp.model.ProductHolder;
 import com.food.identifier.mvp.presenter.BasePresenter;
+import com.food.identifier.mvp.presenter.activity.LoginPresenter.LoginSuccess;
+import com.food.identifier.mvp.presenter.activity.RegisterPresenter.RegisterSuccess;
 import com.food.identifier.mvp.view.adapters.ProductImageAdapter;
 import com.food.identifier.mvp.view.adapters.ProductImageAdapter.ProductImageClick;
 
@@ -20,6 +22,9 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
 import javax.inject.Inject;
+
+import static com.food.identifier.other.Constants.ORGANIZATION_TYPE;
+import static com.food.identifier.other.Constants.USER_TYPE;
 
 /**
  * Created by Taras Matolinets
@@ -70,6 +75,24 @@ public class ProductPresenter extends BasePresenter<IProductView> {
     public void imageClick(ProductImageClick imageClick) {
         List<String> imageUls = mProductHolder.getProductHolder().getImageUrls();
         mView.imageClick(imageUls);
+    }
+
+    @Subscribe
+    public void successLogin(LoginSuccess successLogin) {
+        switch (successLogin.getRole()) {
+            case ORGANIZATION_TYPE:
+                mView.showOrganizationView();
+                break;
+        }
+    }
+
+    @Subscribe
+    public void successRegister(RegisterSuccess successRegister) {
+        switch (successRegister.getUserType()) {
+            case ORGANIZATION_TYPE:
+                mView.showOrganizationView();
+                break;
+        }
     }
 
     public static class ChangeToolbarColor {

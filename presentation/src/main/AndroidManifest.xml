@@ -51,13 +51,18 @@
             android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".mvp.view.activity.LoginActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:label="@string/sign_in"
+            android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".mvp.view.activity.RegisterActivity"
-            android:screenOrientation="portrait"/>
+            android:label="@string/sign_up"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme"/>
         <activity
             android:name=".mvp.view.activity.SelectRoleActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme"/>
 
     </application>
 

@@ -8,6 +8,8 @@ import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.ILoginView;
 import com.food.identifier.mvp.presenter.BasePresenter;
+import com.food.identifier.other.Constants;
+import com.food.identifier.other.utility.SharedPrefPreferencesWrapper;
 import com.food.identifier.other.utility.Utility;
 import com.foodidentifier.data.exceptions.NotValidCredentialException;
 import com.foodidentifier.domain.executor.PostExecutionThread;
@@ -24,8 +26,7 @@ import javax.inject.Inject;
 
 import rx.subscriptions.CompositeSubscription;
 
-import static com.food.identifier.other.Constants.ORGANIZATION_TYPE;
-import static com.food.identifier.other.Constants.USER_TYPE;
+import static com.food.identifier.other.Constants.SUCCESS_LOGIN;
 
 /**
  * Created by taras on 12/9/2017.
@@ -36,6 +37,7 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
     @Inject ThreadExecutor mTreadExecutor;
     @Inject PostExecutionThread mPostExecutor;
     @Inject IFoodIdentifierFactory mFoodIdentifierFactory;
+    @Inject SharedPrefPreferencesWrapper mSharedPrefPreferencesWrapper;
     private CompositeSubscription mComposeSubscription;
 
     public LoginPresenter(ActivityComponent activityComponent) {
@@ -111,6 +113,10 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
         mComposeSubscription.add(subscriber);
     }
 
+    public void saveLoginState(Activity activity) {
+        mSharedPrefPreferencesWrapper.saveToSharedPreferences(activity, SUCCESS_LOGIN, true);
+    }
+
     //region SUBSCRIBER
     private class UseCaseLoginUserSubscriber extends DefaultSubscriber<UserDomainModel> {
         @Override
@@ -129,6 +135,8 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
 
         @Override
         public void onNext(UserDomainModel userDomainModel) {
+            mView.saveLoginState();
+
             LoginSuccess loginSuccess = new LoginSuccess();
             loginSuccess.setRole(userDomainModel.getType());
 

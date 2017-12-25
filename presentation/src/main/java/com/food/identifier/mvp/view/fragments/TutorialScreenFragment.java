@@ -1,5 +1,6 @@
 package com.food.identifier.mvp.view.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import com.food.identifier.mvp.interfaces.fragment.ITutorialScreenView;
 import com.food.identifier.mvp.presenter.fragments.TutorialScreenPresenter;
 import com.food.identifier.mvp.view.activity.LoginActivity;
 import com.food.identifier.mvp.view.activity.RegisterActivity;
+import com.food.identifier.mvp.view.activity.SelectRoleActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -92,7 +94,7 @@ public class TutorialScreenFragment extends MvpFragment<TutorialScreenPresenter>
     public void showHideButtons() {
         if (getArguments() != null) {
             int position = getArguments().getInt(TUTORIAL_POSITION);
-            mPresenter.showHideButtons(position);
+            mPresenter.showHideButtons(getActivity(), position);
         }
     }
 
@@ -113,8 +115,8 @@ public class TutorialScreenFragment extends MvpFragment<TutorialScreenPresenter>
     }
 
     @Override
-    public void replaceToRegister() {
-        mNavigator.replaceActivityAnimation(getActivity(), RegisterActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+    public void replaceToSelectRole() {
+        mNavigator.replaceActivityAnimationFlag(getActivity(), SelectRoleActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, Intent.FLAG_ACTIVITY_NO_HISTORY);
     }
 
     @OnClick({R.id.bt_sign_in, R.id.bt_sign_up})

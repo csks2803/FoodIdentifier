@@ -14,10 +14,6 @@ import com.food.identifier.mvp.interfaces.activity.ITutorialView;
 import com.food.identifier.mvp.presenter.activity.TutorialPresenter;
 import com.food.identifier.mvp.view.adapters.TutorialAdapter;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -78,6 +74,7 @@ public class TutorialActivity extends MvpActivity<TutorialPresenter> implements 
     public void removeLoginItem(int item) {
         ((TutorialAdapter) mVpTutorial.getAdapter()).updateData(item);
         mIndicator.setViewPager(mVpTutorial);
+        onPageSelected(mVpTutorial.getCurrentItem());
     }
 
     @OnClick({R.id.iv_next, R.id.bt_skip, R.id.bt_done})
@@ -95,7 +92,7 @@ public class TutorialActivity extends MvpActivity<TutorialPresenter> implements 
                 break;
             case R.id.bt_skip:
             case R.id.bt_done:
-                mPresenter.replaceToStoreList();
+                mPresenter.replaceAction();
                 break;
         }
         mPresenter.saveTutorialVisit(this);
@@ -113,20 +110,16 @@ public class TutorialActivity extends MvpActivity<TutorialPresenter> implements 
 
     @Override
     public void onPageSelected(int position) {
-        switch (position) {
-            case 0:
-            case 1:
-            case 2:
-                mIvNext.setVisibility(VISIBLE);
-                mButtonDone.setVisibility(GONE);
-                mButtonSkip.setVisibility(VISIBLE);
-                break;
-            case 3:
-                mIvNext.setVisibility(GONE);
-                mButtonDone.setVisibility(VISIBLE);
-                mButtonSkip.setVisibility(INVISIBLE);
-                break;
+        int count = mVpTutorial.getAdapter().getCount() - 1;
 
+        if (position < count) {
+            mIvNext.setVisibility(VISIBLE);
+            mButtonDone.setVisibility(GONE);
+            mButtonSkip.setVisibility(VISIBLE);
+        } else {
+            mIvNext.setVisibility(GONE);
+            mButtonDone.setVisibility(VISIBLE);
+            mButtonSkip.setVisibility(INVISIBLE);
         }
     }
 

@@ -21,11 +21,11 @@ import java.util.List;
  * Company: FoodDelivery
  */
 public class TutorialAdapter extends FragmentStatePagerAdapter {
-    private List<String> mArrayList= new ArrayList<>();
+    private List<String> mArrayList;
 
     public TutorialAdapter(Context context, FragmentManager fm) {
         super(fm);
-        mArrayList = Arrays.asList(context.getResources().getStringArray(R.array.array_tutorial_desc));
+        mArrayList = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(R.array.array_tutorial_desc)));
     }
 
     @Override
@@ -45,7 +45,7 @@ public class TutorialAdapter extends FragmentStatePagerAdapter {
     }
 
     @Override
-    public int getItemPosition(Object object){
+    public int getItemPosition(Object object) {
         return POSITION_NONE;
     }
 

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import javax.inject.Inject;
+
 import static android.content.Context.MODE_PRIVATE;
 import static com.food.identifier.application.FoodIdentifierApplication.TAG;
 
@@ -15,6 +17,7 @@ public class SharedPrefPreferencesWrapper {
     private static final int DEFAULT_VALUE = -1;
     public static String KEY_TUTORIAL = TAG + ".tutorial";
 
+    @Inject
     public SharedPrefPreferencesWrapper() {
     }
 

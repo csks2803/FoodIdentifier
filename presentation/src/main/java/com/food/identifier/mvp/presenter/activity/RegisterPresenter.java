@@ -120,7 +120,7 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
 
     private boolean emailValidation(String email) {
         int error = DEFAULT_VALUE;
-        if (!TextUtils.isEmpty(email) && Utility.emailValidate(email)) {
+        if (!TextUtils.isEmpty(email) && !Utility.emailValidate(email)) {
             error = R.string.please_write_correct_email;
         } else if (TextUtils.isEmpty(email)) {
             error = R.string.empty_email;

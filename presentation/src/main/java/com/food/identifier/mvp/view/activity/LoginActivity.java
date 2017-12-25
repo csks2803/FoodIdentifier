@@ -22,6 +22,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NO_ANIMATION;
 import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static android.widget.Toast.LENGTH_SHORT;
 
 /**
  * Created by taras on 12/9/2017.
@@ -116,12 +117,17 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
     }
 
     @Override
+    public void saveLoginState() {
+        mPresenter.saveLoginState(this);
+    }
+
+    @Override
     public void replaceToSignUp() {
         mNavigator.replaceActivityAnimation(this, SelectRoleActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
     @Override
     public void showError(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, LENGTH_SHORT).show();
     }
 }

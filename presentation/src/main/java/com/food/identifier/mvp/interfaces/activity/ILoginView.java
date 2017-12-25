@@ -24,4 +24,6 @@ public interface ILoginView extends IBaseView {
     void replaceToScanScreen();
 
     void closeScreen();
+
+    void saveLoginState();
 }

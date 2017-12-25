@@ -37,7 +37,7 @@ public class TutorialPresenter extends BasePresenter<ITutorialView> {
         EventBus.getDefault().unregister(this);
     }
 
-    public void replaceToStoreList() {
+    public void replaceAction() {
         mView.replace();
     }
 

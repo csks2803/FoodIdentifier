@@ -20,5 +20,5 @@ public interface ITutorialScreenView extends IBaseView {
 
     void replaceToLogin();
 
-    void replaceToRegister();
+    void replaceToSelectRole();
 }

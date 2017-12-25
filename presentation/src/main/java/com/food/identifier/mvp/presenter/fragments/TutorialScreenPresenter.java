@@ -7,16 +7,21 @@ import com.food.identifier.di.annotation.PerActivity;
 import com.food.identifier.di.components.FragmentComponent;
 import com.food.identifier.mvp.interfaces.fragment.ITutorialScreenView;
 import com.food.identifier.mvp.presenter.BasePresenter;
+import com.food.identifier.other.utility.SharedPrefPreferencesWrapper;
+
+import javax.inject.Inject;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static com.food.identifier.mvp.presenter.activity.TutorialPresenter.LOGIN;
+import static com.food.identifier.other.Constants.SUCCESS_LOGIN;
 
 /**
  * Created by taras on 9/24/2017.
  */
 @PerActivity
 public class TutorialScreenPresenter extends BasePresenter<ITutorialScreenView> {
+    @Inject SharedPrefPreferencesWrapper mSharedPrefPreferencesWrapper;
 
     public TutorialScreenPresenter(FragmentComponent component) {
         component.inject(this);
@@ -38,8 +43,9 @@ public class TutorialScreenPresenter extends BasePresenter<ITutorialScreenView> 
         }
     }
 
-    public void showHideButtons(int position) {
-        if (position == LOGIN) {
+    public void showHideButtons(Activity activity, int position) {
+        boolean isLogged = mSharedPrefPreferencesWrapper.getBooleanValue(activity, SUCCESS_LOGIN);
+        if (position == LOGIN && !isLogged) {
             mView.showHideLogin(VISIBLE);
             mView.showHideRegister(VISIBLE);
         } else {
@@ -53,6 +59,6 @@ public class TutorialScreenPresenter extends BasePresenter<ITutorialScreenView> 
     }
 
     public void replaceToRegister() {
-        mView.replaceToRegister();
+        mView.replaceToSelectRole();
     }
 }

@@ -25,4 +25,6 @@ public interface IRegisterView extends IBaseView {
     void showError(String message);
 
     void closeScreen();
+
+    void saveLoginState();
 }

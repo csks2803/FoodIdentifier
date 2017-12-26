@@ -22,6 +22,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
+import static android.content.Intent.FLAG_ACTIVITY_NO_HISTORY;
 import static com.food.identifier.other.Constants.TUTORIAL_KEY;
 import static com.food.identifier.other.Constants.TUTORIAL_POSITION;
 
@@ -111,12 +112,12 @@ public class TutorialScreenFragment extends MvpFragment<TutorialScreenPresenter>
 
     @Override
     public void replaceToLogin() {
-        mNavigator.replaceActivityAnimation(getActivity(), LoginActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+        mNavigator.replaceActivityAnimationFlag(getActivity(), LoginActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, FLAG_ACTIVITY_NO_HISTORY);
     }
 
     @Override
     public void replaceToSelectRole() {
-        mNavigator.replaceActivityAnimationFlag(getActivity(), SelectRoleActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, Intent.FLAG_ACTIVITY_NO_HISTORY);
+        mNavigator.replaceActivityAnimationFlag(getActivity(), SelectRoleActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, FLAG_ACTIVITY_NO_HISTORY);
     }
 
     @OnClick({R.id.bt_sign_in, R.id.bt_sign_up})

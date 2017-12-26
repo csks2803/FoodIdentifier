@@ -11,6 +11,7 @@ import com.food.identifier.mvp.model.RegisterFormPresenterModel;
 import com.food.identifier.mvp.presenter.BasePresenter;
 import com.food.identifier.other.Constants;
 import com.food.identifier.other.transformer.PresenterToDataTransformer;
+import com.food.identifier.other.utility.SharedPrefPreferencesWrapper;
 import com.food.identifier.other.utility.Utility;
 import com.foodidentifier.data.exceptions.NotValidCredentialException;
 import com.foodidentifier.domain.executor.PostExecutionThread;
@@ -33,6 +34,7 @@ import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 import static com.food.identifier.other.Constants.ORGANIZATION_TYPE;
+import static com.food.identifier.other.Constants.SUCCESS_LOGIN;
 import static com.food.identifier.other.Constants.USER_TYPE;
 
 /**
@@ -45,6 +47,7 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
     @Inject ThreadExecutor mTreadExecutor;
     @Inject PostExecutionThread mPostExecutor;
     @Inject IFoodIdentifierFactory mFoodIdentifierFactory;
+    @Inject SharedPrefPreferencesWrapper mSharedPrefPreferencesWrapper;
     private CompositeSubscription mComposeSubscription;
 
     public RegisterPresenter(ActivityComponent activityComponent) {
@@ -135,6 +138,11 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
         return false;
     }
 
+    public void saveLoginState(Activity activity) {
+        mSharedPrefPreferencesWrapper.saveToSharedPreferences(activity, SUCCESS_LOGIN, true);
+    }
+
+
     @NonNull
     private Observable<RegisterFormDomainModel> createRegisterFormDomainModelObservable(final int type, final String login, final String password, final String firstName, final String lastName) {
         return Observable.create(new OnSubscribe<RegisterFormDomainModel>() {
@@ -163,6 +171,7 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
 
         @Override
         public void onCompleted() {
+            mView.saveLoginState();
             mView.hideProgress();
             mView.closeScreen();
             RegisterSuccess registerSuccess = new RegisterSuccess();

@@ -108,7 +108,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
 
     @Override
     public void replaceToScanScreen() {
-        mNavigator.replaceActivityAnimation(this, IdScannerActivity.class, FLAG_ACTIVITY_NO_HISTORY, android.R.anim.fade_in, android.R.anim.fade_out);
+        mNavigator.replaceActivityAnimationFlag(this, IdScannerActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, FLAG_ACTIVITY_NO_HISTORY);
     }
 
     @Override
@@ -123,7 +123,7 @@ public class LoginActivity extends MvpActivity<LoginPresenter> implements ILogin
 
     @Override
     public void replaceToSignUp() {
-        mNavigator.replaceActivityAnimation(this, SelectRoleActivity.class, android.R.anim.fade_in, android.R.anim.fade_out);
+        mNavigator.replaceActivityAnimationFlag(this, SelectRoleActivity.class, android.R.anim.fade_in, android.R.anim.fade_out, FLAG_ACTIVITY_NO_HISTORY);
     }
 
     @Override

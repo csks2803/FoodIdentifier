@@ -69,6 +69,7 @@ public class RegisterActivity extends MvpActivity<RegisterPresenter> implements 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
 
@@ -106,6 +107,11 @@ public class RegisterActivity extends MvpActivity<RegisterPresenter> implements 
     @Override
     public void closeScreen() {
         finish();
+    }
+
+    @Override
+    public void saveLoginState() {
+        mPresenter.saveLoginState(this);
     }
 
     @Override

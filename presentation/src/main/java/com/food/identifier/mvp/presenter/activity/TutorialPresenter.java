@@ -21,6 +21,7 @@ import static com.food.identifier.other.utility.SharedPrefPreferencesWrapper.KEY
  * Company: FoodDelivery
  */
 public class TutorialPresenter extends BasePresenter<ITutorialView> {
+
     public static final int LOGIN = 2;
     public TutorialPresenter(ActivityComponent activityComponent) {
         activityComponent.inject(this);

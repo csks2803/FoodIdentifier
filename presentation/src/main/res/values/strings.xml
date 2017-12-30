@@ -15,8 +15,9 @@
     <string name="description">Description</string>
     <string name="feedback">Feedback</string>
 
-    <string name="identify_product">Identify product</string>
+    <string name="identify_product">Identify Product</string>
     <string name="products_history">Product History</string>
+    <string name="add_new_product">Add Product</string>
     <string name="sign_in">Sign In</string>
     <string name="no_history">No History</string>
 

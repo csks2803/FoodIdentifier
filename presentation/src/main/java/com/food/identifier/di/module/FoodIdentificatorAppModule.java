@@ -5,6 +5,7 @@ import android.content.Context;
 import com.food.identifier.UIThread;
 import com.food.identifier.application.FoodIdentifierApplication;
 import com.food.identifier.mvp.model.ProductHolder;
+import com.food.identifier.mvp.model.UserHolder;
 import com.food.identifier.other.utility.SharedPrefPreferencesWrapper;
 import com.foodidentifier.data.executor.JobExecutor;
 import com.foodidentifier.data.net.FoodIdentifierFactory;
@@ -60,6 +61,12 @@ public class FoodIdentificatorAppModule {
     @Singleton
     ProductHolder provideProductPresentation() {
         return new ProductHolder();
+    }
+
+    @Provides
+    @Singleton
+    UserHolder provideUserPresentation() {
+        return new UserHolder();
     }
 
     @Provides

@@ -8,8 +8,11 @@ import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IRegisterView;
 import com.food.identifier.mvp.model.RegisterFormPresenterModel;
+import com.food.identifier.mvp.model.UserHolder;
+import com.food.identifier.mvp.model.UserPresenterModel;
 import com.food.identifier.mvp.presenter.BasePresenter;
 import com.food.identifier.other.Constants;
+import com.food.identifier.other.transformer.DomainToPresenterTransformer;
 import com.food.identifier.other.transformer.PresenterToDataTransformer;
 import com.food.identifier.other.utility.SharedPrefPreferencesWrapper;
 import com.food.identifier.other.utility.Utility;
@@ -20,6 +23,7 @@ import com.foodidentifier.domain.interactor.DefaultSubscriber;
 import com.foodidentifier.domain.interactor.UseCase;
 import com.foodidentifier.domain.interactor.UseCaseRegisterUser;
 import com.foodidentifier.domain.model.RegisterFormDomainModel;
+import com.foodidentifier.domain.model.UserDomainModel;
 import com.foodidentifier.domain.net.IFoodIdentifierFactory;
 
 import org.greenrobot.eventbus.EventBus;
@@ -48,6 +52,7 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
     @Inject PostExecutionThread mPostExecutor;
     @Inject IFoodIdentifierFactory mFoodIdentifierFactory;
     @Inject SharedPrefPreferencesWrapper mSharedPrefPreferencesWrapper;
+    @Inject UserHolder mUserHolder;
     private CompositeSubscription mComposeSubscription;
 
     public RegisterPresenter(ActivityComponent activityComponent) {
@@ -74,7 +79,7 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
         if (isEmailValid && isPasswordValid && isValidFirstName && isValidLastName) {
 
             mView.showProgress();
-            TransformRegisterSubscriber subscriber = new TransformRegisterSubscriber(type);
+            TransformRegisterSubscriber subscriber = new TransformRegisterSubscriber();
 
             mComposeSubscription.add(subscriber);
 
@@ -162,37 +167,60 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
         });
     }
 
-    public class UseCaseRegisterSubscriber extends DefaultSubscriber<Void> {
-        private int type;
+    @NonNull
+    private Observable<UserPresenterModel> createUserPresenterModel(final UserDomainModel userDomainModel) {
+        return Observable.create(new OnSubscribe<UserPresenterModel>() {
+            @Override
+            public void call(Subscriber<? super UserPresenterModel> subscriber) {
 
-        public UseCaseRegisterSubscriber(int type) {
-            this.type = type;
-        }
+                DomainToPresenterTransformer transformer = new DomainToPresenterTransformer();
+                UserPresenterModel userPresenterModel = transformer.transformUserModel(userDomainModel);
+                subscriber.onNext(userPresenterModel);
+                subscriber.onCompleted();
+            }
+        });
+    }
+
+    public class UseCaseRegisterSubscriber extends DefaultSubscriber<UserDomainModel> {
 
         @Override
         public void onCompleted() {
             mView.saveLoginState();
             mView.hideProgress();
             mView.closeScreen();
-            RegisterSuccess registerSuccess = new RegisterSuccess();
-            registerSuccess.setUserType(type);
-
-            EventBus.getDefault().post(registerSuccess);
         }
 
         @Override
         public void onError(Throwable e) {
             mView.hideProgress();
         }
+
+        @Override
+        public void onNext(UserDomainModel userDomainModel) {
+            TransformUserToPresenterSubscriber subscriber = new TransformUserToPresenterSubscriber();
+
+            createUserPresenterModel(userDomainModel).subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(subscriber);
+
+            mComposeSubscription.add(subscriber);
+        }
+    }
+
+    private class TransformUserToPresenterSubscriber extends DefaultSubscriber<UserPresenterModel> {
+
+        @Override
+        public void onNext(UserPresenterModel userPresenterModel) {
+            mUserHolder.setUserPresenterModel(userPresenterModel);
+
+            RegisterSuccess registerSuccess = new RegisterSuccess();
+            registerSuccess.setUserType(userPresenterModel.getType());
+
+            EventBus.getDefault().post(registerSuccess);
+        }
     }
 
     private class TransformRegisterSubscriber extends DefaultSubscriber<RegisterFormDomainModel> {
-
-        private final int type;
-
-        public TransformRegisterSubscriber(int type) {
-            this.type = type;
-        }
 
         @Override
         public void onError(Throwable e) {
@@ -203,7 +231,7 @@ public class RegisterPresenter extends BasePresenter<IRegisterView> {
 
         @Override
         public void onNext(RegisterFormDomainModel registerFormDomainModel) {
-            UseCaseRegisterSubscriber subscriber = new UseCaseRegisterSubscriber(type);
+            UseCaseRegisterSubscriber subscriber = new UseCaseRegisterSubscriber();
 
             UseCase useCase = new UseCaseRegisterUser(mTreadExecutor, mPostExecutor, mFoodIdentifierFactory, registerFormDomainModel);
             useCase.execute(subscriber);

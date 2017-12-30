@@ -19,5 +19,5 @@ public interface IFoodIdentifierFactory {
 
     Observable<UserDomainModel> loginUser(String password, String login);
 
-    Observable<Void> registerUser(RegisterFormDomainModel registerFormDomainModel);
+    Observable<UserDomainModel> registerUser(RegisterFormDomainModel registerFormDomainModel);
 }

@@ -34,4 +34,6 @@ public interface IProductView extends IBaseView, IHasComponent<ActivityComponent
     void imageClick(List<String> imageUls);
 
     void showOrganizationView();
+
+    void showDrawerItem();
 }

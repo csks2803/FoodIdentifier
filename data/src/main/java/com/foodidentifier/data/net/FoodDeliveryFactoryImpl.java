@@ -125,10 +125,10 @@ class FoodDeliveryFactoryImpl {
         });
     }
 
-    Observable<Void> registerUser(final RegisterFormDomainModel registerUser) {
-        return Observable.create(new OnSubscribe<Void>() {
+    Observable<UserDomainModel> registerUser(final RegisterFormDomainModel registerUser) {
+        return Observable.create(new OnSubscribe<UserDomainModel>() {
             @Override
-            public void call(Subscriber<? super Void> subscriber) {
+            public void call(Subscriber<? super UserDomainModel> subscriber) {
                 DomainToDataTransformer domainToDataTransformer = new DomainToDataTransformer();
                 RegisterFormEntityModel registerFormEntityModel = domainToDataTransformer.transformRegister(registerUser);
 //                final Call<Void> request = mApi.getService().registerUser(registerFormEntityModel);
@@ -144,13 +144,26 @@ class FoodDeliveryFactoryImpl {
 //                    }
 //                });
 
-                if (registerUser.getLogin().equalsIgnoreCase("test.organization@gmail.com") && registerUser.getType() == 1
-                        || registerUser.getLogin().equalsIgnoreCase("test.user@gmail.com") && registerUser.getType() == 0) {
+                if (registerUser.getLogin().equalsIgnoreCase("test.user@gmail.com") && registerUser.getType() == 0) {
+
+                    String json = Utility.loadJSONFromAsset(mContext, "user_customer.json");
+                    UserEntityModel userEntity = new JsonMapper().fromJson(json, UserEntityModel.class);
+
+                    UserDomainModel userDomainModel = mTransformer.transformUserModel(userEntity);
+                    subscriber.onNext(userDomainModel);
+
+                    subscriber.onCompleted();
+                } else if (registerUser.getLogin().equalsIgnoreCase("test.organization@gmail.com") && registerUser.getType() == 1) {
+                    String json = Utility.loadJSONFromAsset(mContext, "user_organization.json");
+                    UserEntityModel userEntity = new JsonMapper().fromJson(json, UserEntityModel.class);
+
+                    UserDomainModel userDomainModel = mTransformer.transformUserModel(userEntity);
+                    subscriber.onNext(userDomainModel);
+
                     subscriber.onCompleted();
                 } else {
                     subscriber.onError(new NotValidCredentialException("This organization was not register. Please contact us for more details."));
                 }
-
             }
         });
     }

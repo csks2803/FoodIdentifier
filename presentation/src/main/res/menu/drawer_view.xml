@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/add_new_product">
+        <item
+            android:id="@+id/add_product"
+            android:actionLayout="@layout/item_navigation_header"
+            android:title="@string/add_new_product"/>
+    </group>
+
     <group android:id="@+id/identify_product">
         <item
             android:id="@+id/nav_scan"
             android:actionLayout="@layout/item_navigation_header"
             android:title="@string/identify_product"/>
     </group>
+
     <item
         android:id="@+id/nav_history"
         android:actionLayout="@layout/item_navigation_header"
         android:title="@string/products_history"/>
+
 </menu>

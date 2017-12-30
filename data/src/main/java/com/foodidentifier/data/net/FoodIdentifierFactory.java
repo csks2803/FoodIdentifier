@@ -60,7 +60,7 @@ public class FoodIdentifierFactory implements IFoodIdentifierFactory {
     }
 
     @Override
-    public Observable<Void> registerUser(RegisterFormDomainModel registerFormDomainModel) {
+    public Observable<UserDomainModel> registerUser(RegisterFormDomainModel registerFormDomainModel) {
         FoodDeliveryRestApi api = new FoodDeliveryRestApi(BASE_URL);
 
         DataToDomainTransformer transformer = new DataToDomainTransformer();

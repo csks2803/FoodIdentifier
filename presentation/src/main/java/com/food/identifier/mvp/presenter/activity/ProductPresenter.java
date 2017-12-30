@@ -10,11 +10,14 @@ import com.bumptech.glide.request.transition.Transition;
 import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.IProductView;
 import com.food.identifier.mvp.model.ProductHolder;
+import com.food.identifier.mvp.model.UserHolder;
+import com.food.identifier.mvp.model.UserPresenterModel;
 import com.food.identifier.mvp.presenter.BasePresenter;
 import com.food.identifier.mvp.presenter.activity.LoginPresenter.LoginSuccess;
 import com.food.identifier.mvp.presenter.activity.RegisterPresenter.RegisterSuccess;
 import com.food.identifier.mvp.view.adapters.ProductImageAdapter;
 import com.food.identifier.mvp.view.adapters.ProductImageAdapter.ProductImageClick;
+import com.food.identifier.other.Constants;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -35,6 +38,7 @@ import static com.food.identifier.other.Constants.USER_TYPE;
 
 public class ProductPresenter extends BasePresenter<IProductView> {
     @Inject ProductHolder mProductHolder;
+    @Inject UserHolder userHolder;
 
     public ProductPresenter(ActivityComponent activityComponent) {
         activityComponent.inject(this);
@@ -49,6 +53,14 @@ public class ProductPresenter extends BasePresenter<IProductView> {
         mView.setAdapter();
         mView.setNavigationListener();
         mView.setProductImageAdapter(mProductHolder.getProductHolder().getImageUrls());
+        setUserRoleView();
+    }
+
+    private void setUserRoleView() {
+        UserPresenterModel userPresenterModel = userHolder.getUserPresenterModel();
+//        if (userPresenterModel != null && userPresenterModel.getType() == Constants.ORGANIZATION_TYPE) {
+            mView.showDrawerItem();
+//        }
     }
 
     @Override

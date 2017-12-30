@@ -1,14 +1,17 @@
 package com.food.identifier.mvp.presenter.activity;
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextUtils;
 
 import com.food.identifier.R;
 import com.food.identifier.di.components.ActivityComponent;
 import com.food.identifier.mvp.interfaces.activity.ILoginView;
+import com.food.identifier.mvp.model.UserHolder;
+import com.food.identifier.mvp.model.UserPresenterModel;
 import com.food.identifier.mvp.presenter.BasePresenter;
-import com.food.identifier.other.Constants;
+import com.food.identifier.other.transformer.DomainToPresenterTransformer;
 import com.food.identifier.other.utility.SharedPrefPreferencesWrapper;
 import com.food.identifier.other.utility.Utility;
 import com.foodidentifier.data.exceptions.NotValidCredentialException;
@@ -24,6 +27,10 @@ import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 import rx.subscriptions.CompositeSubscription;
 
 import static com.food.identifier.other.Constants.SUCCESS_LOGIN;
@@ -33,11 +40,12 @@ import static com.food.identifier.other.Constants.SUCCESS_LOGIN;
  */
 
 public class LoginPresenter extends BasePresenter<ILoginView> {
-    public static final int DEFAULT_VALUE = -1;
+    private static final int DEFAULT_VALUE = -1;
     @Inject ThreadExecutor mTreadExecutor;
     @Inject PostExecutionThread mPostExecutor;
     @Inject IFoodIdentifierFactory mFoodIdentifierFactory;
     @Inject SharedPrefPreferencesWrapper mSharedPrefPreferencesWrapper;
+    @Inject UserHolder mUserHolder;
     private CompositeSubscription mComposeSubscription;
 
     public LoginPresenter(ActivityComponent activityComponent) {
@@ -135,14 +143,44 @@ public class LoginPresenter extends BasePresenter<ILoginView> {
 
         @Override
         public void onNext(UserDomainModel userDomainModel) {
+            TransformUserToPresenterSubscriber subscriber = new TransformUserToPresenterSubscriber();
+
+            createUserPresenterModel(userDomainModel).subscribeOn(Schedulers.newThread())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(subscriber);
+
+            mComposeSubscription.add(subscriber);
+        }
+    }
+
+    @NonNull
+    private Observable<UserPresenterModel> createUserPresenterModel(final UserDomainModel userDomainModel) {
+        return Observable.create(new Observable.OnSubscribe<UserPresenterModel>() {
+            @Override
+            public void call(Subscriber<? super UserPresenterModel> subscriber) {
+
+                DomainToPresenterTransformer transformer = new DomainToPresenterTransformer();
+                UserPresenterModel userPresenterModel = transformer.transformUserModel(userDomainModel);
+                subscriber.onNext(userPresenterModel);
+                subscriber.onCompleted();
+            }
+        });
+    }
+
+    private class TransformUserToPresenterSubscriber extends DefaultSubscriber<UserPresenterModel> {
+
+        @Override
+        public void onNext(UserPresenterModel userPresenterModel) {
             mView.saveLoginState();
+            mUserHolder.setUserPresenterModel(userPresenterModel);
 
             LoginSuccess loginSuccess = new LoginSuccess();
-            loginSuccess.setRole(userDomainModel.getType());
+            loginSuccess.setRole(userPresenterModel.getType());
 
             EventBus.getDefault().post(loginSuccess);
         }
     }
+
     //endregion
 
     public static class LoginSuccess {

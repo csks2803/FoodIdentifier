@@ -17,6 +17,7 @@ import android.support.v7.graphics.Palette;
 import android.support.v7.graphics.Palette.PaletteAsyncListener;
 import android.support.v7.graphics.Palette.Swatch;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.view.Menu.FIRST;
 import static android.view.View.FOCUS_LEFT;
 import static android.view.View.FOCUS_RIGHT;
 import static android.view.View.GONE;
@@ -191,6 +193,12 @@ public class ProductActivity extends MvpActivity<ProductPresenter> implements IP
     @Override
     public void showOrganizationView() {
 
+    }
+
+    @Override
+    public void showDrawerItem() {
+        int addProduct = 0;
+        mNavView.getMenu().getItem(addProduct).setVisible(true);
     }
 
     @Override
